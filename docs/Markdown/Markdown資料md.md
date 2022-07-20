@@ -3,7 +3,6 @@ marp: true
 paginate: true
 header: "Markdown資料 Ver.0.8"
 footer: ""
-theme: uncover
 author: 木内　和也
 date: 2022-07-20
 category: Jekyll
