@@ -382,6 +382,11 @@ abcdefg強調非対象
 | left       | right       | center       |
 | aligned    | aligned     | aligned      |
 
+| Left align | Right align | Center align |
+|-----------|------------|------------|
+| left       | right       | center       |
+| aligned    | aligned     | aligned      |
+
 ---
 
 ## 折りたたみ
