@@ -3,11 +3,13 @@ marp: true
 paginate: true
 header: "Markdown資料 Ver.0.8"
 footer: ""
-layout: post
-author: 木内　和也
-date: 2022-07-20
-category: Jekyll
+theme: uncover
 title: Markdownについて
+description: 
+author: 木内　和也
+keywords:
+url: 
+image: 
 ---
 
 # Markdownについて
@@ -362,10 +364,13 @@ abcdefg強調非対象
 ~~~
 | Left align | Right align | Center align |
 |:-----------|------------:|:------------:|
-| This       | This        | This         |
-| column     | column      | column       |
 | will       | will        | will         |
 | be         | be          | be           |
+| left       | right       | center       |
+| aligned    | aligned     | aligned      |
+
+| Left align | Right align | Center align |
+|-----------|------------|------------|
 | left       | right       | center       |
 | aligned    | aligned     | aligned      |
 ~~~
@@ -375,12 +380,11 @@ abcdefg強調非対象
 出力結果
 | Left align | Right align | Center align |
 |:-----------|------------:|:------------:|
-| This       | This        | This         |
-| column     | column      | column       |
 | will       | will        | will         |
 | be         | be          | be           |
 | left       | right       | center       |
 | aligned    | aligned     | aligned      |
+
 
 | Left align | Right align | Center align |
 |-----------|------------|------------|
