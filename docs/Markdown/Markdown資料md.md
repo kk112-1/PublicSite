@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 paginate: true
 header: "Markdown資料 Ver.0.8"
 footer: ""
@@ -70,6 +70,13 @@ Webへの展開も簡単にできる。
 
 - PDF化ができれば、
 embedやiframeを利用すれば、WEBに公開することが出来る。
+
+---
+
+<!-- footer: "Markdown導入方法" -->
+# Markdown導入方法
+-VisualStudioが入っていれば標準で作成可能。
+※詳細作成中・・・
 
 ---
 
@@ -459,3 +466,4 @@ EFGH
 - [絵文字リスト](https://www.webfx.com/tools/emoji-cheat-sheet/)
 - [VISUAL STUDIO CODE で MERMAID をプレビューする方法](https://usefuledge.com/vscodemermaidsupport.html)
 - [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+- [公式Readme](https://github.com/marp-team/marp-cli/blob/main/README.md)
