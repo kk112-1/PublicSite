@@ -43,6 +43,6 @@ Python、JavaScript、TypeScript、Ruby、Java、Go
 ※試用期間は60日
 ※現在(8月1日時点)では、2022年8月22日まで無料で試用可能
 ```
-# 参考情報
+# 参考サイト
 - [公式サイト](https://github.com/features/copilot)
 - [公式ブログ](https://github.blog/jp/2022-06-22-github-copilot-is-generally-available-to-all-developers/)
