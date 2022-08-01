@@ -1,9 +1,15 @@
 ---
-title: "Copilotについて（レポート）"
 marp: false
 paginate: true
 header: "Copilotについて（レポート）"
+footer: ""
 theme: uncover
+title: "Copilotについて（レポート）"
+description: 
+author: 木内　和也
+keywords:
+url: 
+image: 
 ---
 
 # 概要
