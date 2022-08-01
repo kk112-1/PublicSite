@@ -1,5 +1,7 @@
 # トップページ
 
 - [Markdownについて](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99_md)
-- [Copidlotについて](./Copidlot/Copidlot%E8%B3%87%E6%96%99_md.md)
+  - [HTML](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99)
+  - [PDF](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99.pdf)
+- [Copidlotについて](./Copidlot/Copidlot%E8%B3%87%E6%96%99_md)
 
