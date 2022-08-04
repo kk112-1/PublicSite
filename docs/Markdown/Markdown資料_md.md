@@ -322,7 +322,7 @@ abcdefg強調非対象
 ```
 
 出力結果
-[Google](https://www.google.com)
+[Google](https://www.google.com){:target="_blank"}
 
 ---
 
@@ -340,7 +340,7 @@ abcdefg強調非対象
 ---
 
 出力結果
-[Google][Google]
+[Google][Google]{:target="_blank"}
 
 定義方法
 
@@ -455,21 +455,21 @@ EFGH
 ```
 出力結果
 :smile:
-- 絵文字リスト：[リンク](https://www.webfx.com/tools/emoji-cheat-sheet/)
+- 絵文字リスト：[リンク](https://www.webfx.com/tools/emoji-cheat-sheet/){:target="_blank"}
 
 ---
 
 # プレゼン、印刷用データ
-  - [HTML](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99)
-  - [PDF](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99.pdf)
+  - [HTML](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99){:target="_blank"}
+  - [PDF](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99.pdf){:target="_blank"}
 
 ---
 
 # 参考サイト
 
-- [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
-- [【VS Code + Marp】Markdownから爆速・自由自在なデザインで、プレゼンスライドを作る](https://qiita.com/tomo_makes/items/aafae4021986553ae1d8)
-- [絵文字リスト](https://www.webfx.com/tools/emoji-cheat-sheet/)
-- [VISUAL STUDIO CODE で MERMAID をプレビューする方法](https://usefuledge.com/vscodemermaidsupport.html)
-- [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
-- [公式Readme](https://github.com/marp-team/marp-cli/blob/main/README.md)
+- [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d){:target="_blank"}
+- [【VS Code + Marp】Markdownから爆速・自由自在なデザインで、プレゼンスライドを作る](https://qiita.com/tomo_makes/items/aafae4021986553ae1d8){:target="_blank"}
+- [絵文字リスト](https://www.webfx.com/tools/emoji-cheat-sheet/){:target="_blank"}
+- [VISUAL STUDIO CODE で MERMAID をプレビューする方法](https://usefuledge.com/vscodemermaidsupport.html){:target="_blank"}
+- [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d){:target="_blank"}
+- [公式Readme](https://github.com/marp-team/marp-cli/blob/main/README.md){:target="_blank"}
