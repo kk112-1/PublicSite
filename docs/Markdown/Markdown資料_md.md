@@ -15,8 +15,7 @@ image:
 # Markdownについて
 作成者：木内　和也
 作成日：2022/7/12
-  - [HTML](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99)
-  - [PDF](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99.pdf)
+
 ---
 
 # Markdown記法について
@@ -457,6 +456,12 @@ EFGH
 出力結果
 :smile:
 - 絵文字リスト：[リンク](https://www.webfx.com/tools/emoji-cheat-sheet/)
+
+---
+
+# プレゼン、印刷用データ
+  - [HTML](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99)
+  - [PDF](https://kk112-1.github.io/PublicSite/Markdown/Markdown%E8%B3%87%E6%96%99.pdf)
 
 ---
 
