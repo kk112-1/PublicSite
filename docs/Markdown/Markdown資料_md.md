@@ -24,7 +24,7 @@ image:
 
 ![Markdownアイコン](https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg)
 - Markdownとは、文書を記述するための軽量マークアップ言語のひとつである。
-[参考](https://ja.wikipedia.org/wiki/Markdown)
+[参考](https://ja.wikipedia.org/wiki/Markdown){:target="_blank"}
 - 今回はVisual Studio Codeを利用している。
 
 ---
