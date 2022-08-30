@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="602.214" height="358.356" viewBox="0 0 602.214 358.356">
+  <defs>
+    <filter id="お得_" x="4.189" y="7.188" width="593.837" height="349.979" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="fonnto_karubi_otoku" data-name="fonnto karubi otoku" transform="matrix(0.998, -0.07, 0.07, 0.998, -21.573, -5134.221)">
+    <g id="グループ_32" data-name="グループ 32" transform="matrix(0.985, 0.174, -0.174, 0.985, -403.516, 4200.497)">
+      <text id="お得_2" data-name="お得!!" transform="translate(269.29 1118.81)" fill="none" stroke="#fff" stroke-width="12" font-size="202" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">お</tspan><tspan y="0" font-size="160" letter-spacing="0.25em">得</tspan><tspan y="0" font-size="203">!!</tspan></text>
+      <text id="お得_3" data-name="お得!!" transform="translate(269.29 1118.81)" fill="#e60012" stroke="#fff" stroke-width="1" font-size="202" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">お</tspan><tspan y="0" font-size="160" letter-spacing="0.25em">得</tspan><tspan y="0" font-size="203">!!</tspan></text>
+      <text id="お得_4" data-name="お得!!" transform="translate(269.29 1118.81)" fill="none" stroke="#231815" stroke-width="8" font-size="202" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">お</tspan><tspan y="0" font-size="160" letter-spacing="0.25em">得</tspan><tspan y="0" font-size="203">!!</tspan></text>
+      <text id="お得_5" data-name="お得!!" transform="translate(269.29 1118.81)" fill="none" stroke="#fff" stroke-width="3" font-size="202" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">お</tspan><tspan y="0" font-size="160" letter-spacing="0.25em">得</tspan><tspan y="0" font-size="203">!!</tspan></text>
+      <g transform="matrix(0.99, -0.1, 0.1, 0.99, 226.1, 897.09)" filter="url(#お得_)">
+        <text id="お得_6" data-name="お得!!" transform="matrix(0.99, 0.1, -0.1, 0.99, 19.77, 225.02)" fill="#e60012" font-size="202" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">お</tspan><tspan y="0" font-size="160" letter-spacing="0.25em">得</tspan><tspan y="0" font-size="203">!!</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

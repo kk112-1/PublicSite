@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="テキスト">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="reset.css/reset.css">
+        <!-- リセットCSSは上に、どういうリセットか分からないが下にあるのにリセット聞いてるのか分からない。 -->
+        <title>サイト</title>
+    </head>
+
+    <body>
+    <div class="gnav">
+        <img src="img/logo-img.jpg" alt=""><!-- headerの上に出ているのはどうかな -->
+        <header>
+            <img src="img/logo-top.svg" alt="">
+            <!-- ここからがハンバーガーボタン -->
+        <div class="hamburger-menu">
+            <div class="hamburger-menu-line line-top"></div>
+            <div class="hamburger-menu-line line-middle"></div>
+            <div class="hamburger-menu-line line-bottom"></div>
+        </div>
+        <!-- ここまでがハンバーガーボタン　PCの時は表示を消す-->
+        <nav>
+        <!-- ここからがPC用のグローバルナビ -->
+            <ul class="pc">
+                <li><a href="#">トップ</a></li>
+                <li><a href="#">こだわり</a></li>
+                <li><a href="#">メニュー</a></li>
+                <li><a href="#">お知らせ</a></li>
+                <li><a href="#">アクセス・店舗情報</a></li>
+            </ul>
+        <!-- ここまでがPC用のグローバルナビ　スマホの時は消す -->
+        <!-- ここからがスマホ用のグローバルナビ（ハンバーガーボタンクリックで表示されるメニュー） -->
+            <ul class="sp">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">WORKS</a></li>
+                <li><a href="#">BLOG</a></li>
+                <li><a href="#">RECRUIT</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        <!-- ここまでがスマホ用のグローバルナビ　PCの時は消す -->
+        </nav>
+        </header>
+        <p class="txt-hd">お問い合わせはこちら<br>TEL  078-341-2955</p><!-- ヘッダーから出てるのはダメだよね -->
+    </div>
+        <main>
+            <!-- mv -->
+            <article class="mv"><!-- これがarticleなのは気になる -->
+                <img src="img/topmv.jpg" alt="">
+            </article>
+            <!-- こだわり -->
+            <div class="inner"><!-- これdivいるのかどうか。クラス名の為だけなら、articleにつけても良い -->
+                <article class="concept">
+                    <section class="concept-box">
+                        <div class="concept-txt">
+                            <img class="tanosii" src="img/font-tanosii.svg" alt="">
+                            <h5 class="taitol">店内は海賊船</h5>
+                            <p class="txtR">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
+                        </div>
+                        <div class="conceptR">
+                            <img src="img/shop-concept.jpg" alt="">
+                        </div>
+                    </section>
+                    <section class="concept-box">
+                        <div class="concept-txt">
+                            <img class="tanosii" src="img/font-oisii.svg" alt="">
+                            <h5>A５ランクのお肉をご用意</h5>
+                            <p class="txtR">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
+                        </div>
+                        <div class="conceptR">
+                            <img src="img/karubi-concept.jpg" alt="">
+                        </div>
+                    </section>
+                    <section class="concept-box">
+                        <div class="concept-txt">
+                            <img class="tanosii" src="img/font-otoku.svg" alt="">
+                            <h5>セットメニューもあります。</h5>
+                            <p class="txtR">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
+                        </div>
+                        <div class="conceptR">
+                            <img src="img/shop-concept.jpg" alt="">
+                        </div>
+                    </section>
+                </article>
+            </div>
+            <!-- 予約 -->
+            <article class="reserve">
+                <img src="img/reserve-btn2.svg" alt="">
+            </article>
+
+            <!-- 料理 -->
+            <div class="parallax bk01">
+                <h2 class="title">料理</h2>
+            </div>
+            <div class="inner"><!-- これdivいるのかどうか。クラス名の為だけなら、articleにつけても良い -->
+                <section class="menu-box">
+                    <h3>おすすめ</h3>
+                    <ul class="menu-Food">
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                </section>
+            </div>
+            <div class="inner"><!-- これdivいるのかどうか。クラス名の為だけなら、articleにつけても良い -->
+                <section class="menu-box">
+                    <h3>焼肉</h3>
+                    <ul class="menu-Food">
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="inner">
+                <section class="menu-box">
+                    <h3>一品料理</h3>
+                    <ul class="menu-Food">
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/karubi-menu.jpg" alt="" width="410">
+                            <div class="menuR">
+                                <h4>商品名</h4>
+                                <p>1200円</p>
+                                <p>ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。ここに文字が入ります。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <div class="more">
+                    <img src="img/more.svg" alt="">
+                </div>
+            </div>
+                <div class="parallax bk02"><!-- 上はarticleじゃなかったかな -->
+                    <h2 class="title">ドリンク</h2>
+                </div>
+            <div class="inner">
+                <div class="Drink"><!-- なんで急に大文字、なんのためのdiv -->
+                    <section class="nonaru">
+                            <h3>ノンアルコール</h3>
+                            <ul class="menu-Drink">
+                                <li>
+                                    <p>ノンアルビール<span>¥500</span></p>
+                                </li>
+                                <li>
+                                    <p>ノンアルビール<span>¥500</span></p>
+                                </li>
+                                <li>
+                                    <p>ノンアルビール<span>¥500</span></p>
+                                </li>
+                                <li>
+                                    <p>ノンアルビール<span>¥500</span></p>
+                                </li>
+                                <li>
+                                    <p>ノンアルビール<span>¥500</span></p>
+                                </li>
+                                <li>
+                                    <p>ノンアルビール<span>¥500</span></p>
+                                </li>
+                            </ul>
+                    </section>
+                </div><!-- このあたりからインデントがズレてきてる。 -->
+                <div class="inner">
+                    <section class="kakuteru">
+                        <h3>カクテル</h3>
+                        <ul class="menu-Drink">
+                            <li>
+                                <p>ノンアルビール<span>¥500</span></p>
+                            </li>
+                            <li>
+                                <p>ノンアルビール<span>¥500</span></p>
+                            </li>
+                            <li>
+                                <p>ノンアルビール<span>¥500</span></p>
+                            </li>
+                            <li>
+                                <p>ノンアルビール<span>¥500</span></p>
+                            </li>
+                            <li>
+                                <p>ノンアルビール<span>¥500</span></p>
+                            </li>
+                            <li>
+                                <p>ノンアルビール<span>¥500</span></p>
+                            </li>
+                    </ul>
+                </section>
+                </article>
+            </div>
+            <div class="more">
+                <img src="img/more.svg" alt="">
+            </div>
+            <article class="news">
+                <h2>お知らせ</h2>
+                <section class="map-news">
+                    <div class="map-news-item">
+                        <img src="img/news-map.png" alt="">
+                        <div class="news-txt">
+                            <h5>お知らせ</h5>
+                            <p>ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。</p>
+                        </div>
+                    </div>
+                    <div class="map-news-item">
+                        <img src="img/news-map.png" alt="">
+                        <div class="news-txt">
+                            <h5>お知らせ</h5>
+                            <p>ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。</p>
+                        </div>
+                    </div>
+                    <div class="map-news-item">
+                        <img src="img/news-map.png" alt="">
+                        <div class="news-txt">
+                            <h5>お知らせ</h5>
+                            <p>ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。</p>
+                        </div>
+                    </div>
+                </section>
+                <div class="more">
+                    <img src="img/more.svg" alt="">
+                </div>
+            </article>
+
+
+            <!-- アクセス -->
+            <article class="access">
+                <h2>アクセス</h2>
+                <div class="gmap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6480.97683504581!2d139.69603573227477!3d35.689596751983835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2z5paw5a6_6aeF!5e0!3m2!1sja!2sjp!4v1536218871739" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="logo-number">
+                <img src="img/footer-logo.svg" alt="">
+                <p class="txtF">お問い合わせはこちら<br>TEL  078-341-2955</p>
+            </div>
+            <table class="info">
+                <tr>
+                    <th>店名</th>
+                    <td>かるびの海賊</td>
+                </tr>
+                <tr>
+                    <th>住所</th>
+                    <td>〒650-0025 神戸市中央区相性町</td>
+                </tr>
+                <tr>
+                    <th>T E L</th>
+                    <td>078 - 341 - 2955</td>
+                </tr>
+                <tr>
+                    <th>F E X</th>
+                    <td>078 - 341 - 2951</td>
+                </tr>
+                <tr>
+                    <th>営業時間</th>
+                    <td>00:00～00:00</td>
+                </tr>
+                <tr>
+                    <th>定休日</th>
+                    <td>-曜日</td>
+                </tr>
+            </table>
+
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+
+</html>

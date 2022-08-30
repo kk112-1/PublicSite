@@ -1,0 +1,429 @@
+@charset "UTF-8";
+/* 共通 */
+body{
+    background-color: #222222;
+    font-family: "游ゴシック","メイリオ","MS Pゴシック",sans-serif;
+}
+img{
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+ul{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+.inner{
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+@font-face {
+    font-family: 'Togalite-Bold';
+    src: url('../font/togalite_web/Togalite-Bold.woff2') format('woff2') ,
+    url('../font/togalite_web/Togalite-Bold.eot') format('opentype');
+}  
+
+h5{
+    font-size: 24px;
+    color: #000;
+}
+
+h3{
+    margin-bottom: 60px;
+    font-size: 35px;
+    text-decoration: underline;
+    font-family: 'Togalite-Bold';
+    
+}
+
+.more{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 150px;
+}
+
+/* parallax */
+.parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+.bk01{
+    background-image: url(../img/yakinikuprx.jpg);
+    
+}
+.bk02{
+    background-image: url(../img/drinkprx.jpg);
+}
+
+/* ヘッダー */
+
+/* ulのレイアウトの為のコード */
+ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.gnav{
+    background-color: rgb(35, 35, 35, 0.55);
+    position: fixed;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: -140px;
+    justify-content:space-between
+
+}
+
+.gnav p{
+color: #fff;
+font-size: 20px;
+margin-top: 20px;
+}
+
+.pc{
+    margin-top: 15px;
+}
+/*ハンバーガーメニュー*/
+header ul.sp {
+    padding-top: 4rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background: rgba(255,255,255,0.5);
+    pointer-events: none;
+    opacity: 0; /*通常時はここで消してる*/
+    transition: opacity 0.2s linear;
+  }
+  header ul.sp a {
+    color: var(--link-color);
+  }
+  header ul.sp.is-active {
+    /*ボタンがクリックされるとis-activeというクラス名が付与されて表示されるようになる*/
+    pointer-events: auto;
+    opacity: 1;
+  }
+  
+  /* 通常時のスタイルに書く内容ここまで */
+  
+  
+  /* メディアクエリのスタイルに書く内容 */
+  
+@media screen and (max-width: 640px) {
+  /*ハンバーガーメニュー*/
+  .pc {
+    display: none;
+}
+  :root {
+    --hamburger-menu-size: 40px; /* メニューの大きさ */
+    --hamburger-menu-padding: 18px;
+    --hamburger-menu-border-px: 3px; /* 線の太さ */
+    --hamburger-menu-border-color: #fff; /* 線の色 */
+    --hamburger-menu-transition: 0.3s; /* アニメーション秒数 */
+  }
+  .hamburger-menu {
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    width: 80px;/*ハンバーガーの高さ*/
+    height: 65px;/*ハンバーガーの幅*/
+  }
+  .btm-menu {
+    position: absolute;
+    font-size: 1.5rem;
+    bottom: -10px;
+    padding-left: 20px;
+    width: 100%;
+  }
+  .hamburger-menu-line {
+    position: absolute;
+    transition: var(--hamburger-menu-transition);
+    width: calc(100% - var(--hamburger-menu-padding) * 2);
+    height: var(--hamburger-menu-border-px);
+    background-color: var(--hamburger-menu-border-color);
+  }
+  .line-top {
+    top: var(--hamburger-menu-padding);
+    left: var(--hamburger-menu-padding);
+  }
+  .line-middle {
+    top: calc(50% - var(--hamburger-menu-border-px)/2);
+    left: var(--hamburger-menu-padding);
+  }
+  .line-bottom {
+    bottom: var(--hamburger-menu-padding);
+    left: var(--hamburger-menu-padding);
+  }
+  .hamburger-menu-active > .line-top {
+    top: calc(50% - var(--hamburger-menu-border-px)/2);
+    transform: rotate(45deg);
+  }
+  .hamburger-menu-active > .line-middle {
+    width: 0;
+    height: 0;
+    left: var(--hamburger-menu-padding);
+  }
+  .hamburger-menu-active > .line-bottom {
+    top: calc(50% - var(--hamburger-menu-border-px)/2);
+    transform: rotate(-45deg);
+  }
+  
+  /* メディアクエリのスタイルに書く内容　ここまで */
+}
+
+
+.mv{
+    margin-top: 138px;
+}
+
+/*  こだわり */
+
+.concept{
+
+    background-image: url(../img/mapconcept.png);
+    background-size: 100% 100%;
+    padding: 60px;
+}
+.concept-box{
+    display: flex;
+    align-items: flex-end;
+
+}
+.concept-box:nth-child(2){
+    flex-direction: row-reverse;
+}
+
+.concept-txt img{
+    margin-bottom: 10px;
+}
+
+.txtR{
+    color: #000;
+}
+
+/* 予約 */
+
+.reserve{
+    text-align: center;
+    margin-left: 16%;
+    margin-bottom: 11%;
+}
+
+/* 料理 */
+
+.menu-box{
+    max-width: 1500px;
+    margin: 0 15px;
+}
+
+main section{
+    padding: 100px 0;
+    height: auto;
+    color: #fff;
+}
+h2{
+    text-align: center;
+    color: rgb(227, 227, 227);
+    font-family: 'Togalite-Bold';
+    font-size: 40px;
+    text-shadow:1px 1px 0 #000, -1px -1px 0 #000,
+                -1px 1px 0 #000, 1px -1px 0 #000,
+                0px 1px 0 #000,  0-1px 0 #000,
+                -1px 0 0 #000, 1px 0 0 #000;
+}
+h2.title{
+    height: 200px;
+    line-height: 200px;
+}
+
+ul.menu-Food{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+}
+.menu-Food li{
+    width: calc((100% - 50px)/2);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* ドリンク */
+
+.Drink{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.nonaru{
+    margin-bottom: -100px;
+
+}
+ul.menu-Drink{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.menu-Drink li{
+    width: calc(100%/3);
+    text-align: center;
+}
+.menu-Drink li span{
+    margin-left: 50px;
+}
+
+/* お知らせ */
+
+.map-news{
+    display: flex;
+    justify-content: center;
+}
+
+.map-news-item {
+    position: relative;
+}
+.news-txt {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 1;
+    width: 82%;
+} 
+.news-txt p {
+    color: #000;
+
+}
+h5{
+    margin-bottom: 10%;
+    color: #000;
+    text-align: center;
+}
+/* アクセス */
+.gmap {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    }
+    .gmap iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    }
+
+.access h2{
+    margin-bottom: 50px;
+}
+
+/* フッター */
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px;
+} 
+
+
+.logo-number p{
+    font-size: 30px;
+    color: #fff;
+    margin-top: 40px;
+}
+
+.txtF{
+    font-size: 40px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+th{
+    font-size: 20px;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+}
+td{
+    font-size: 20px;
+    color: #fff;
+}
+
+/* ハンバーガーメニュー */
+
+/* ブレイクポイント */
+
+@media not all and (min-width: 768px) {
+
+.gnav p{
+    display: none;
+}
+
+header img{
+    display: none;
+}
+
+/* こだわりのレスポンシブ */
+.concept-box {
+    display: block;
+    }
+
+
+/* 料理のレスポンシブ */
+ul.menu-Food {
+
+    width: 410px;
+    margin: 0 auto;
+    }
+
+.menu-Food li{
+    width: 100%;
+    display: block;
+
+    }
+h3{
+    text-align: center;
+}
+
+h4{
+    margin-top: 5%;
+}
+
+/* お知らせのレスポンシブ */
+
+.map-news{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+}
+
+footer{
+    display: block;
+}
+
+}
+

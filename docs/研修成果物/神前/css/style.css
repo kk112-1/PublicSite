@@ -1,0 +1,321 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "Togalite-Black";
+    src: url(../font/Togalite-Black.woff2);
+}
+
+:root{
+    --main-color:#222222;
+    --sub-color:white;
+}
+body{
+    font-family: "Togalite-Black","sans-serif";
+    background-color: var(--main-color);
+}
+main{
+    margin: 0 auto;
+    width: 1600px;
+}
+li{
+    text-decoration: none;
+    list-style: none;
+}
+nav{
+    background-color: var(--main-color);
+    width: 80%;
+    margin: 0 auto;
+}
+.menu-ber a,.main-menu a{
+    color: var(--sub-color);
+    text-decoration: none;
+    list-style: none;
+}
+/********************** ヘッダー  **************************/ 
+/************ ナビゲーション  *****************/ 
+header{
+    background-image: url(../images/header-karubi.jpg);
+    height: 100vh;
+}
+.logo{
+    color: var(--sub-color);
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.g-nav li{
+    list-style: none;
+    float: left;
+    color: var(--sub-color);
+    margin: 0 auto;
+    width: calc(100%/5);
+}
+.g-nav li :hover{
+    color: gold;
+}
+.callbox-1{
+    max-width: 400px;
+    display: flex;
+}
+.callnumber-1{
+    font-size: 30px;
+    -webkit-text-stroke: 1px rgb(255, 0, 0);
+}
+.menu-ber{
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    height: 110px;
+    width: 100%;
+}
+/********************** メインcss  **************************/ 
+/************* こだわり *************/ 
+.kodawari {
+    background-image: url(../images/kodawari-backimages.png);
+    height: 120vh;
+}
+.kodawari p{
+    color: var(--main-color);
+    max-width: 250px;
+}
+.kodawari .kodawari-p1{
+    margin: 0 auto;
+    font-size: 50px;
+    color: red;
+}
+.kodawari img{
+    max-width: 100%;
+    margin-bottom: 30px;
+}
+.kodawari ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 5%;
+    margin: 0;
+}
+.kodawari-ken{
+    text-align: center;
+}
+.kodawari-ken p{
+    margin: 0 auto;
+}
+.kodawari-ken2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.kodawari-ken2 img{
+    margin-top: 30px;
+}
+.kodawari-ken2 p{
+    margin: 0 auto;
+}
+.kodawari-box1{
+    align-items: center;
+    margin-top: 10%;
+}
+.kodawari-box2{
+    margin-top: 32%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+.kodawari-box3{
+    margin-top: 10%;
+    text-align: center;
+}   
+/************* お料理 *************/
+.main-menu{
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.first-menu h2,.second-menu h2,.third-menu h2,.forth-menu h2,.fifth-menu h2{
+    color: var(--sub-color);
+    margin: 0 auto;
+    text-align: center;
+    width: 200px;
+    margin-bottom: 100px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
+.menu-1 h3{
+    margin: 30px 70px;
+}
+.menu-2 h3{
+    margin: 30px 70px;
+}   
+.menu-3 h3{
+    margin: 30px 70px;
+}
+.menu-4 h3{
+    margin: 30px 70px;
+}
+section h4{
+    margin-bottom: 30px;
+}
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+    gap: 100px;
+}
+.menu li{
+    display: flex;
+    width: 45%;
+    gap: 20px;
+    width: calc(100%-50px/2);
+}
+.gohan-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/************* ドリンク *************/
+.menu-4{
+    display: flex;
+    flex-wrap: wrap;
+}
+.third-menu{
+    max-width: 1300px;
+}
+.drink-menu{
+    color: var(--sub-color);
+    display: flex;
+}
+.drink-box{
+    display: flex;
+    align-items: flex-end;
+}    
+.drink-menu .cost{
+    text-align: right;
+    font-size: 30px;
+}
+.drink-menu li{
+    display: flex;
+}
+.main-menu h2,h3,h4,p{
+    color: var(--sub-color);
+}
+.course-box{
+    display: flex;
+}
+.menu .cost{
+    text-align: right;
+    font-size: 30px;
+}
+.menu img{
+    max-width: 100%;
+    height: auto;
+    vertical-align:bottom;
+}
+.main-menu p{
+    color: var(--sub-color);
+    width: 200px;
+    font-size: 12px;
+}
+/************* コース *************/
+.course-box .cost{
+    font-size: 30px;
+}
+.menu-5 ul{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+span{
+    font-size: 10px;
+}
+.menu-1 ul,.menu-2 ul,.menu-3 ul,.menu-4 ul,.menu-5 ul{
+    margin-bottom: 100px;
+}
+/****************** お知らせ *****************/
+.forth-menu{
+    margin: 0 auto;
+    background-image: url(../images/renga.jpg);
+
+}
+.info h2{
+    color: var(--sub-color);
+}
+.info{
+    text-align: left;
+    width: 100%;
+    height:350px;
+}
+.info-1{
+    max-width: 100%;
+    height: auto;
+}
+.news-list{
+    list-style: none outside;
+    margin: 0;
+    padding: 0;
+}
+.item{
+    margin-bottom: 50px;
+}
+.news-list .item a{
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #CCC;
+    padding: 20px 20px;
+}
+/****************** アクセス・店舗情報 *****************/
+.access{
+    background-image: url(../images/renga.jpg);
+    max-width: 100%;
+    height: auto;
+    padding-bottom:  60px;
+}
+.access h2{
+    width: 250px;
+    color: var(--sub-color);
+}
+.g-map{
+    margin: 0 auto;
+    text-align: center;
+}
+footer{
+    background-image: url(../images/renga.jpg);
+    width: 1600px;
+}
+.footer-nav{
+    max-width: 1300px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-around;
+}
+.leftbox{
+    display: flex;
+    flex-direction: column;
+}
+.leftbox img{
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 60px;
+}
+.callbox-2{
+    display: flex;
+    gap: 30px;
+}
+.callnumber-2{
+    font-size: 40px;
+    -webkit-text-stroke: 1px rgb(255, 0, 0);
+}
+.rightbox{
+    color: var(--sub-color);
+    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+}
+footer dt,dd{
+    padding-bottom: 40px;
+}
+footer dt{
+    float: left;
+    padding-right: 60px;
+}
+
+

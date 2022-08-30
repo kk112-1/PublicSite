@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="652.404" height="400.6" viewBox="0 0 652.404 400.6">
+  <defs>
+    <filter id="楽しい_" x="5.392" y="8.392" width="641.621" height="389.816" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.831"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="fonnto_karubi" data-name="fonnto karubi" transform="matrix(0.974, -0.225, 0.225, 0.974, -112.063, 115.115)">
+    <text id="楽しい_2" data-name="楽しい!!" transform="translate(116.37 248.09)" fill="none" stroke="#fff" stroke-width="12" font-size="181" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">楽</tspan><tspan y="0" font-size="133" letter-spacing="-0.11em">し</tspan><tspan y="0" font-size="133" letter-spacing="0.14em">い</tspan><tspan y="0">!!</tspan></text>
+    <text id="楽しい_3" data-name="楽しい!!" transform="translate(116.37 248.09)" fill="#e60012" stroke="#fff" stroke-width="1" font-size="181" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">楽</tspan><tspan y="0" font-size="133" letter-spacing="-0.11em">し</tspan><tspan y="0" font-size="133" letter-spacing="0.14em">い</tspan><tspan y="0">!!</tspan></text>
+    <text id="楽しい_4" data-name="楽しい!!" transform="translate(116.37 248.09)" fill="none" stroke="#231815" stroke-width="8" font-size="181" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">楽</tspan><tspan y="0" font-size="133" letter-spacing="-0.11em">し</tspan><tspan y="0" font-size="133" letter-spacing="0.14em">い</tspan><tspan y="0">!!</tspan></text>
+    <text id="楽しい_5" data-name="楽しい!!" transform="translate(116.37 248.09)" fill="none" stroke="#fff" stroke-width="3" font-size="181" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">楽</tspan><tspan y="0" font-size="133" letter-spacing="-0.11em">し</tspan><tspan y="0" font-size="133" letter-spacing="0.14em">い</tspan><tspan y="0">!!</tspan></text>
+    <g transform="matrix(0.97, 0.22, -0.22, 0.97, 135.09, -86.96)" filter="url(#楽しい_)">
+      <text id="楽しい_6" data-name="楽しい!!" transform="matrix(0.97, -0.22, 0.22, 0.97, 57.13, 330.67)" fill="#e60012" font-size="181" font-family="kurobara-gothic-regular, kurobara gothic"><tspan x="0" y="0">楽</tspan><tspan y="0" font-size="133" letter-spacing="-0.11em">し</tspan><tspan y="0" font-size="133" letter-spacing="0.14em">い</tspan><tspan y="0">!!</tspan></text>
+    </g>
+  </g>
+</svg>
