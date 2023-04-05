@@ -117,8 +117,11 @@ function preload(){
 	sounds.pdestroy = loadSound("./sounds/pdestroy.mp3")
 	sounds.game_start = loadSound("./sounds/game_start.mp3")
 	bgms.bgm = loadSound("./sounds/bgm.mp3")
+	bgms.bgm.setVolume(0.5)
 	bgms.bgm2 = loadSound("./sounds/bgm_title.mp3")
+	bgms.bgm2.setVolume(0.5)
 	bgms.game_over = loadSound("./sounds/bgm_game_over.mp3")
+	bgms.game_over.setVolume(0.5)
 }
 
 function setup(){
