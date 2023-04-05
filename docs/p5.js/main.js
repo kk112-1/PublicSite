@@ -1,5 +1,13 @@
-//Space to Start... 処理に書く
 var context
+
+let MotherShip = {
+	maxhp:10,
+	credit:0
+}
+
+let base = {
+	credit:0
+}
 
 let options = {
 	enemy_max_amprate:600,
