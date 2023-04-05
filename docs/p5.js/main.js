@@ -8,7 +8,15 @@ let options = {
 	enemy_speed_start:1,
 	spawn_rate_amprate:3000,
 	spawn_rate_start:5,
-	autoshot:true
+	autoshot:false
+}
+
+function controllerChange(event){
+	switch(event.id){
+		case "autoshot":
+			options.autoshot = event.checked
+	}
+
 }
 
 let canvas = {x:500,y:500}
@@ -119,6 +127,7 @@ function setup(){
 	canvasElement.parent(canvasParentElement);
 	background('#ffffff')
 	frameRate(60)
+	scoreElement = document.getElementById("score")
 }
 
 // p5.jsのメインループ
@@ -219,7 +228,7 @@ ${gameStatus.score}点でした。`)
 					// HIT時
 					if(enemys[l].damage()){
 						sounds.destroy.play()
-						gameStatus.score += enemys[l].score
+						addscore(enemys[l].score)
 						enemys.splice(l,1)
 					}else{
 						sounds.damage.play()
@@ -287,7 +296,7 @@ function menueloop(){
 		textSize(41)
 		text("Space to Start...",20,canvas.y/2)
 		fill("#333333")
-		text("Space to Start...",20-2,canvas.y/2-2)
+		text("Space to Start...",20+2,canvas.y/2+2)
 	}
 
 	if(gameStartFlag){
@@ -388,3 +397,9 @@ function drawGrid(color="#000000",mode="stage") {
 
 }
 
+// スコア更新処理
+let scoreElement
+function addscore(point){
+	gameStatus.score += point
+	scoreElement.value = gameStatus.score
+}

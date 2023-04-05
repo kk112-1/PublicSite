@@ -10,6 +10,12 @@
 <body>
 	WASDで自機の操作<br>
 	スペースキーで攻撃
-	<div id="GameCanvas"></div>
+	<div>
+		<div id="GameCanvas" style="float:left"></div>
+		<div>
+			<div><label for="score">スコア</label><input type="text" name="score" id="score" value="0" disabled></div>
+			<div><label for="autoshot">オートショット</label><input type="checkbox" name="autoshot" id="autoshot" onchange="controllerChange(this)"></div>
+		</div>
+	</div>
 </body>
 </html>
