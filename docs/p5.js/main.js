@@ -1,3 +1,4 @@
+import { MovePatterns } from "./MovePatterns.js"
 var context
 class GameMainClass{
 	constructor(){
@@ -12,7 +13,7 @@ class GameMainClass{
 		}
 		this.canvas = {x:500,y:500}
 		this.gameStatus = {
-			mode:"title",
+			mode:"play",
 			score:0
 		}
 		this.stageStatus = {
@@ -32,12 +33,30 @@ class GameMainClass{
 				score:1
 			},
 			middle:{
-				rate:5,
+				rate:0,
 				hp:5,
 				size:50,
 				color:"#FF0000",
 				speed:{x:0,y:2},
 				score:2
+			},
+			wave:{
+				rate:10,
+				hp:2,
+				size:15,
+				color:"#FF0000",
+				speed:{x:0,y:1},
+				score:1,
+				movePattern:MovePatterns[0],
+			},
+			wave2:{
+				rate:10,
+				hp:2,
+				size:15,
+				color:"#FF0000",
+				speed:{x:0,y:1},
+				score:1,
+				movePattern:MovePatterns[1],
 			}
 		}
 		// 敵の追加の種類
@@ -122,7 +141,7 @@ class GameMainClass{
 					if(enemytypernd < 0 && enemytypernd + this.enemytypes[key].rate >= 0){ 
 						let px = random(10, this.canvas.x - 10)
 						let py = random(-100, 0)
-						this.enemys.push(new Enemy({x:px,y:py},this.enemytypes[key].hp,this.enemytypes[key].size,this.enemytypes[key].color,this.enemytypes[key].score,{x:this.enemytypes[key].speed.x*this.stageStatus.enemy_speed,y:this.enemytypes[key].speed.y*this.stageStatus.enemy_speed}))
+						this.enemys.push(new Enemy({x:px,y:py},this.enemytypes[key].hp,this.enemytypes[key].size,this.enemytypes[key].color,this.enemytypes[key].score,{x:this.enemytypes[key].speed.x*this.stageStatus.enemy_speed,y:this.enemytypes[key].speed.y*this.stageStatus.enemy_speed},this.enemytypes[key].movePattern))
 					}
 				})
 			}
@@ -133,6 +152,15 @@ class GameMainClass{
 			fill(this.enemys[i].color)
 			this.enemys[i].pos.x += this.enemys[i].speed.x
 			this.enemys[i].pos.y += this.enemys[i].speed.y
+			if(this.enemys[i].movePattern){
+				if(!this.enemys[i].moveCount || this.enemys[i].moveCount>=this.enemys[i].movePattern.length){
+					this.enemys[i].moveCount = 0;
+				}
+				this.enemys[i].pos.x += this.enemys[i].movePattern[this.enemys[i].moveCount].x
+				this.enemys[i].pos.y += this.enemys[i].movePattern[this.enemys[i].moveCount].y
+
+				this.enemys[i].moveCount++
+			}
 			// 敵の生存エリア
 			if(this.enemys[i].pos.x > -100 && this.enemys[i].pos.x < this.canvas.x + 100 && this.enemys[i].pos.y > 0 - 100 && this.enemys[i].pos.y < this.canvas.y + 100){
 				// 敵描画(HitCircle)
@@ -273,13 +301,14 @@ ${this.gameStatus.score}点でした。`)
 let gmc = new GameMainClass()
 
 class Enemy{
-	constructor(pos,hp,size,color,score,speed={x:0,y:0}){
+	constructor(pos,hp,size,color,score,speed={x:0,y:0},movePattern=null){
 		this.pos = {x:pos.x,y:pos.y}
 		this.size = size
 		this.hp = hp
 		this.color = color
 		this.score = score
 		this.speed = {x:speed.x,y:speed.y}
+		this.movePattern = movePattern
 	}
 
 	damage(damage = 1){
@@ -292,7 +321,7 @@ class Enemy{
 }
 
 // // p5.jsの準備処理
-function preload(){
+window.preload = () => {
 	context = new AudioContext()
 	gmc.sounds.shot = loadSound("./sounds/shot.mp3")
 	gmc.sounds.damage = loadSound("./sounds/damage.mp3")
@@ -308,17 +337,17 @@ function preload(){
 }
 
 // p5.jsのセットアップ
-function setup(){
+window.setup = () => {
 	let canvasElement = createCanvas(gmc.canvas.x, gmc.canvas.y)
 	let canvasParentElement = document.getElementById('GameCanvas');
 	canvasElement.parent(canvasParentElement);
 	background('#ffffff')
 	frameRate(60)
-	scoreElement = document.getElementById("score")
+	HtmlController.scoreElement = document.getElementById("score")
 }
 
 // p5.jsのメインループ
-function draw(){
+window.draw = () => {
 	switch (gmc.gameStatus.mode) {
 		case "title":
 			gmc.menueloop()
@@ -343,13 +372,13 @@ class KeySystem{
 }
 
 // p5.jsのキー押下
-function keyPressed() {
+window.keyPressed = () =>  {
 	KeySystem.bit |= (1<<keyCode)
 	//print("KeyCode:"+ keyCode + "BIT:" + KeySystem.bit)
 }
 
 // p5.jsのキー開放
-function keyReleased() {
+window.keyReleased = () => {
 	KeySystem.bit &= ~(1<<keyCode)
 }
 
