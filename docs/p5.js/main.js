@@ -78,6 +78,8 @@ class GameMainClass{
 		this.menuCount = 0
 		this.gameStartFlag = false
 		this.gameStartFlagTime = 0
+		// ショットの間隔
+		this.pastShot = 0
 	}
 	
 	// ゲームのメインループ
@@ -120,7 +122,7 @@ class GameMainClass{
 					if(enemytypernd < 0 && enemytypernd + this.enemytypes[key].rate >= 0){ 
 						let px = random(10, this.canvas.x - 10)
 						let py = random(-100, 0)
-						this.enemys.push(new enemy({x:px,y:py},this.enemytypes[key].hp,this.enemytypes[key].size,this.enemytypes[key].color,this.enemytypes[key].score,{x:this.enemytypes[key].speed.x*this.stageStatus.enemy_speed,y:this.enemytypes[key].speed.y*this.stageStatus.enemy_speed}))
+						this.enemys.push(new Enemy({x:px,y:py},this.enemytypes[key].hp,this.enemytypes[key].size,this.enemytypes[key].color,this.enemytypes[key].score,{x:this.enemytypes[key].speed.x*this.stageStatus.enemy_speed,y:this.enemytypes[key].speed.y*this.stageStatus.enemy_speed}))
 					}
 				})
 			}
@@ -164,7 +166,7 @@ ${this.gameStatus.score}点でした。`)
 						// HIT時
 						if(this.enemys[l].damage()){
 							this.sounds.destroy.play()
-							addscore(this.enemys[l].score)
+							HtmlController.addscore(this.enemys[l].score)
 							this.enemys.splice(l,1)
 						}else{
 							this.sounds.damage.play()
@@ -206,17 +208,23 @@ ${this.gameStatus.score}点でした。`)
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.SPACE))>0){
-				if(pastShot <= 0 && !this.options.autoshot){
-					shot()
+				if(this.pastShot <= 0 && !this.options.autoshot){
+					this.shot()
 				}
 			}
 		}
 		if(this.options.autoshot && !((KeySystem.bit&(1<<KeySystem.KEY_CODES.SPACE))>0)){
-			if(pastShot <= 0){
-				shot()
+			if(this.pastShot <= 0){
+				this.shot()
 			}
 		}
-		pastShot--
+		this.pastShot--
+	}
+
+	shot(){
+		this.sounds.shot.play()
+		this.pastShot = 10
+		this.player.shotPos.push({x:this.player.pos.x,y:this.player.pos.y,vx:0,vy:10,size:10,color:"#FF0000"})
 	}
 
 	menueloop(){
@@ -264,7 +272,7 @@ ${this.gameStatus.score}点でした。`)
 }
 let gmc = new GameMainClass()
 
-class enemy{
+class Enemy{
 	constructor(pos,hp,size,color,score,speed={x:0,y:0}){
 		this.pos = {x:pos.x,y:pos.y}
 		this.size = size
@@ -323,13 +331,6 @@ function draw(){
 	}	
 }
 
-let pastShot = 0
-function shot(){
-	gmc.sounds.shot.play()
-	pastShot = 10
-	gmc.player.shotPos.push({x:gmc.player.pos.x,y:gmc.player.pos.y,vx:0,vy:10,size:10,color:"#FF0000"})
-}
-
 class KeySystem{
 	static bit
 	static KEY_CODES = {
@@ -341,11 +342,13 @@ class KeySystem{
 	}
 }
 
+// p5.jsのキー押下
 function keyPressed() {
 	KeySystem.bit |= (1<<keyCode)
 	//print("KeyCode:"+ keyCode + "BIT:" + KeySystem.bit)
 }
 
+// p5.jsのキー開放
 function keyReleased() {
 	KeySystem.bit &= ~(1<<keyCode)
 }
@@ -394,19 +397,20 @@ class Utility{
 	}
 }
 
+class HtmlController{
+	// htmlのコントローラーと連携用
+	static controllerChange(event){
+		switch(event.id){
+			case "autoshot":
+				gmc.options.autoshot = event.checked
+		}
 
-// htmlのコントローラーと連携用
-function controllerChange(event){
-	switch(event.id){
-		case "autoshot":
-			gmc.options.autoshot = event.checked
 	}
 
-}
-
-// スコア更新処理
-let scoreElement
-function addscore(point){
-	gmc.gameStatus.score += point
-	scoreElement.value = gmc.gameStatus.score
+	// スコア更新処理
+	static scoreElement
+	static addscore(point){
+		gmc.gameStatus.score += point
+		this.scoreElement.value = gmc.gameStatus.score
+	}
 }
