@@ -13,7 +13,8 @@ class GameMainClass{
 		}
 		this.canvas = {x:500,y:500}
 		this.gameStatus = {
-			mode:"play",
+			mode:"title",
+			// mode:"play",
 			score:0
 		}
 		this.stageStatus = {
