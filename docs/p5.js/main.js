@@ -1,6 +1,9 @@
 import { MovePatterns } from "./MovePatterns.js"
+import { ShotPatterns } from "./ShotPatterns.js"
+import { Utility } from "./Utility.js"
 var context
 class GameMainClass{
+	static canvas = {x:500,y:500}
 	constructor(){
 		this.options = {
 			enemy_max_amprate:600,
@@ -11,10 +14,9 @@ class GameMainClass{
 			spawn_rate_start:5,
 			autoshot:false
 		}
-		this.canvas = {x:500,y:500}
 		this.gameStatus = {
-			mode:"title",
-			// mode:"play",
+			// mode:"title",
+			mode:"play",
 			score:0
 		}
 		this.stageStatus = {
@@ -31,18 +33,20 @@ class GameMainClass{
 				size:25,
 				color:"#FF0000",
 				speed:{x:0,y:1},
-				score:1
+				score:1,
+				shotPattern:[ShotPatterns[0]],
 			},
 			middle:{
-				rate:0,
+				rate:1,
 				hp:5,
 				size:50,
 				color:"#FF0000",
 				speed:{x:0,y:2},
-				score:2
+				score:2,
+				shotPattern:[ShotPatterns[1]],
 			},
 			wave:{
-				rate:10,
+				rate:5,
 				hp:2,
 				size:15,
 				color:"#FF0000",
@@ -51,7 +55,7 @@ class GameMainClass{
 				movePattern:MovePatterns[0],
 			},
 			wave2:{
-				rate:10,
+				rate:5,
 				hp:2,
 				size:15,
 				color:"#FF0000",
@@ -80,7 +84,8 @@ class GameMainClass{
 		}
 		
 		this.enemys = []
-		
+		this.enemy_bullets = []
+
 		this.bgms = {
 			bgm:null,
 			bgm2:null,
@@ -112,7 +117,7 @@ class GameMainClass{
 		this.stageStatus.progress++
 
 		// グリッド表示
-		Utility.drawGrid("#000000")
+		SUtility.drawGrid("#000000")
 
 
 		// 難易度調整
@@ -140,9 +145,9 @@ class GameMainClass{
 				Object.keys(this.enemytypes).forEach(key => {
 					enemytypernd -= this.enemytypes[key].rate
 					if(enemytypernd < 0 && enemytypernd + this.enemytypes[key].rate >= 0){ 
-						let px = random(10, this.canvas.x - 10)
+						let px = random(10, GameMainClass.canvas.x - 10)
 						let py = random(-100, 0)
-						this.enemys.push(new Enemy({x:px,y:py},this.enemytypes[key].hp,this.enemytypes[key].size,this.enemytypes[key].color,this.enemytypes[key].score,{x:this.enemytypes[key].speed.x*this.stageStatus.enemy_speed,y:this.enemytypes[key].speed.y*this.stageStatus.enemy_speed},this.enemytypes[key].movePattern))
+						this.enemys.push(new Enemy({x:px,y:py},this.enemytypes[key].hp,this.enemytypes[key].size,this.enemytypes[key].color,this.enemytypes[key].score,{x:this.enemytypes[key].speed.x*this.stageStatus.enemy_speed,y:this.enemytypes[key].speed.y*this.stageStatus.enemy_speed},this.enemytypes[key].movePattern,this.enemytypes[key].shotPattern))
 					}
 				})
 			}
@@ -150,33 +155,11 @@ class GameMainClass{
 		
 		// 敵処理
 		for(let i=0;i<this.enemys.length;i++){
-			fill(this.enemys[i].color)
-			this.enemys[i].pos.x += this.enemys[i].speed.x
-			this.enemys[i].pos.y += this.enemys[i].speed.y
-			if(this.enemys[i].movePattern){
-				if(!this.enemys[i].moveCount || this.enemys[i].moveCount>=this.enemys[i].movePattern.length){
-					this.enemys[i].moveCount = 0;
-				}
-				this.enemys[i].pos.x += this.enemys[i].movePattern[this.enemys[i].moveCount].x
-				this.enemys[i].pos.y += this.enemys[i].movePattern[this.enemys[i].moveCount].y
-
-				this.enemys[i].moveCount++
-			}
-			// 敵の生存エリア
-			if(this.enemys[i].pos.x > -100 && this.enemys[i].pos.x < this.canvas.x + 100 && this.enemys[i].pos.y > 0 - 100 && this.enemys[i].pos.y < this.canvas.y + 100){
-				// 敵描画(HitCircle)
-				circle(this.enemys[i].pos.x,this.enemys[i].pos.y,this.enemys[i].size)
-				if(0 > dist(this.enemys[i].pos.x,this.enemys[i].pos.y,this.player.pos.x,this.player.pos.y) - (this.enemys[i].size/2)){
-					this.sounds.pdestroy.play()
-					this.bgms.bgm.stop()
-					this.bgms.game_over.loop()
-					// ゲームオーバー処理
-					alert(`GAME OVER
-${this.gameStatus.score}点でした。`)
-					this.gameStatus.mode = "game_over"
-				}
-			}else{
+			if(!this.enemys[i].move()){
 				this.enemys.splice(i,1)
+				i--;
+			}else{
+				this.enemys[i].shots()
 			}
 		}
 
@@ -184,7 +167,7 @@ ${this.gameStatus.score}点でした。`)
 		for(let i=0;i<this.player["shotPos"].length;i++){
 			this.player.shotPos[i].y -= this.player.shotPos[i].vy
 			this.player.shotPos[i].x -= this.player.shotPos[i].vx
-			if(this.player.shotPos[i].x > 0 - this.player.shotPos[i].size/2 && this.player.shotPos[i].x < this.canvas.x + this.player.shotPos[i].size/2&& this.player.shotPos[i].y > 0 - this.player.shotPos[i].size/2 && this.player.shotPos[i].y < this.canvas.y + this.player.shotPos[i].size/2){
+			if(this.player.shotPos[i].x > 0 - this.player.shotPos[i].size/2 && this.player.shotPos[i].x < GameMainClass.canvas.x + this.player.shotPos[i].size/2&& this.player.shotPos[i].y > 0 - this.player.shotPos[i].size/2 && this.player.shotPos[i].y < GameMainClass.canvas.y + this.player.shotPos[i].size/2){
 				// 描画判定
 				fill(this.player.shotPos[i].color)
 				circle(this.player.shotPos[i].x,this.player.shotPos[i].y, this.player.shotPos[i].size)
@@ -210,7 +193,14 @@ ${this.gameStatus.score}点でした。`)
 				this.player.shotPos.splice(i,1)
 			}
 		}
-		
+
+		// 敵弾処理
+		for(let i=0;i<this.enemy_bullets.length;i++){
+			if(!this.enemy_bullets[i].move()){
+				this.enemy_bullets.splice(i,1)
+				i--;
+			}
+		}		
 	}
 
 	// ゲーム中の入力処理
@@ -222,7 +212,7 @@ ${this.gameStatus.score}点でした。`)
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.s))>0 || (KeySystem.bit&(1<<KeySystem.KEY_CODES.down))>0){
-				if(this.player.pos.y < this.canvas.y){
+				if(this.player.pos.y < GameMainClass.canvas.y){
 					this.player.pos.y += this.player.speed
 				}
 			}
@@ -232,7 +222,7 @@ ${this.gameStatus.score}点でした。`)
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.d))>0 || (KeySystem.bit&(1<<KeySystem.KEY_CODES.right))>0){
-				if(this.player.pos.x < this.canvas.x){
+				if(this.player.pos.x < GameMainClass.canvas.x){
 					this.player.pos.x += this.player.speed
 				}
 			}
@@ -263,9 +253,9 @@ ${this.gameStatus.score}点でした。`)
 		if(Math.floor(this.menuCount/30) % 2 || this.gameStartFlag){
 			fill("#000000")
 			textSize(41)
-			text("Space to Start...",20,this.canvas.y/2)
+			text("Space to Start...",20,GameMainClass.canvas.y/2)
 			fill("#333333")
-			text("Space to Start...",20+2,this.canvas.y/2+2)
+			text("Space to Start...",20+2,GameMainClass.canvas.y/2+2)
 		}
 
 		if(this.gameStartFlag){
@@ -302,7 +292,7 @@ ${this.gameStatus.score}点でした。`)
 let gmc = new GameMainClass()
 
 class Enemy{
-	constructor(pos,hp,size,color,score,speed={x:0,y:0},movePattern=null){
+	constructor(pos,hp,size,color,score,speed={x:0,y:0},movePattern=null,shotPatterns=null){
 		this.pos = {x:pos.x,y:pos.y}
 		this.size = size
 		this.hp = hp
@@ -310,6 +300,7 @@ class Enemy{
 		this.score = score
 		this.speed = {x:speed.x,y:speed.y}
 		this.movePattern = movePattern
+		this.shotPatterns = shotPatterns
 	}
 
 	damage(damage = 1){
@@ -319,6 +310,88 @@ class Enemy{
 		}
 		return false
 	}
+
+	move(){
+		fill(this.color)
+		this.pos.x += this.speed.x
+		this.pos.y += this.speed.y
+		if(this.movePattern){
+			if(!this.moveCount || this.moveCount>=this.movePattern.length){
+				this.moveCount = 0;
+			}
+			this.pos.x += this.movePattern[this.moveCount].x
+			this.pos.y += this.movePattern[this.moveCount].y
+
+			this.moveCount++
+		}
+		// 敵の生存エリア
+		if(this.pos.x > -100 && this.pos.x < GameMainClass.canvas.x + 100 && this.pos.y > 0 - 100 && this.pos.y < GameMainClass.canvas.y + 100){
+			// 敵描画(HitCircle)
+			circle(this.pos.x,this.pos.y,this.size)
+			if(0 > dist(this.pos.x,this.pos.y,gmc.player.pos.x,gmc.player.pos.y) - (this.size/2)){
+				gmc.sounds.pdestroy.play()
+				gmc.bgms.bgm.stop()
+				gmc.bgms.game_over.loop()
+				// ゲームオーバー処理
+				alert(`GAME OVER
+${gmc.gameStatus.score}点でした。`)
+				gmc.gameStatus.mode = "game_over"
+			}
+		}else{
+			return false
+		}
+		return true
+	}
+
+	shots(){
+		if(this.shotPatterns)this.shotPatterns.forEach(shotPattern => shotPattern(this,gmc.player))
+	}
+
+	newEnemyBullet(pos,color,size,lifeTime,speed={x:0,y:0},movePattern=null){
+		gmc.enemy_bullets.push(new EnemyBullet(pos,color,size,lifeTime,speed,movePattern))
+	}
+}
+class EnemyBullet{
+	constructor(pos,color,size,lifeTime,speed={x:0,y:0},movePattern=null){
+		this.speed = speed
+		this.pos = pos
+		this.color = color
+		this.size = size
+		this.lifeTime = lifeTime
+		this.movePattern = movePattern
+	}
+
+	move(){
+		fill(this.color)
+		this.pos.x += this.speed.x
+		this.pos.y += this.speed.y
+		if(this.movePattern){
+			if(!this.moveCount || this.moveCount>=this.movePattern.length){
+				this.moveCount = 0;
+			}
+			this.pos.x += this.movePattern[this.moveCount].x
+			this.pos.y += this.movePattern[this.moveCount].y
+			this.moveCount++
+		}
+		// 弾の生存エリア
+		if(this.pos.x > -100 && this.pos.x < GameMainClass.canvas.x + 100 && this.pos.y > 0 - 100 && this.pos.y < GameMainClass.canvas.y + 100){
+			// 弾描画(HitCircle)
+			circle(this.pos.x,this.pos.y,this.size)
+			if(0 > dist(this.pos.x,this.pos.y,gmc.player.pos.x,gmc.player.pos.y) - (this.size/2)){
+				gmc.sounds.pdestroy.play()
+				gmc.bgms.bgm.stop()
+				gmc.bgms.game_over.loop()
+				// ゲームオーバー処理
+				alert(`GAME OVER
+${gmc.gameStatus.score}点でした。`)
+				gmc.gameStatus.mode = "game_over"
+			}
+		}else{
+			return false
+		}
+		return true
+	}
+
 }
 
 // // p5.jsの準備処理
@@ -339,7 +412,7 @@ window.preload = () => {
 
 // p5.jsのセットアップ
 window.setup = () => {
-	let canvasElement = createCanvas(gmc.canvas.x, gmc.canvas.y)
+	let canvasElement = createCanvas(GameMainClass.canvas.x, GameMainClass.canvas.y)
 	let canvasParentElement = document.getElementById('GameCanvas');
 	canvasElement.parent(canvasParentElement);
 	background('#ffffff')
@@ -382,8 +455,7 @@ window.keyPressed = () =>  {
 window.keyReleased = () => {
 	KeySystem.bit &= ~(1<<keyCode)
 }
-
-class Utility{
+class SUtility{
 	static drawGrid(color="#000000",mode="stage") {
 		switch (mode) {
 			case "stage":
@@ -426,7 +498,6 @@ class Utility{
 	
 	}
 }
-
 class HtmlController{
 	// htmlのコントローラーと連携用
 	static controllerChange(event){
