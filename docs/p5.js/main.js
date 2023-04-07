@@ -28,7 +28,7 @@ class GameMainClass{
 		// 敵の種類
 		this.enemytypes = {
 			normal:{
-				rate:10,
+				rate:5,
 				hp:3,
 				size:25,
 				color:"#FF0000",
@@ -41,7 +41,7 @@ class GameMainClass{
 				hp:5,
 				size:50,
 				color:"#FF0000",
-				speed:{x:0,y:2},
+				speed:{x:0,y:1},
 				score:2,
 				shotPattern:[ShotPatterns[1]],
 			},
@@ -122,7 +122,7 @@ class GameMainClass{
 
 		// 難易度調整
 		this.stageStatus.enemy_max = this.stageStatus.progress / this.options.enemy_max_amprate + this.options.enemy_max_start
-		this.stageStatus.enemy_speed = this.stageStatus.progress / this.options.enemy_speed_amprate + this.options.enemy_speed_start
+		this.stageStatus.enemy_speed = 1// this.stageStatus.progress / this.options.enemy_speed_amprate + this.options.enemy_speed_start
 		this.stageStatus.spawn_rate = this.stageStatus.progress / this.options.spawn_rate_amprate + this.options.spawn_rate_start
 		
 		// 自機処理
