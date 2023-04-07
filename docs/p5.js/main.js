@@ -15,8 +15,8 @@ class GameMainClass{
 			autoshot:false
 		}
 		this.gameStatus = {
-			// mode:"title",
-			mode:"play",
+			mode:"title",
+			// mode:"play",
 			score:0
 		}
 		this.stageStatus = {
@@ -27,13 +27,13 @@ class GameMainClass{
 		}
 		// 敵の種類
 		this.enemytypes = {
-			normal:{
+			fighter:{
 				rate:5,
 				hp:3,
 				size:25,
 				color:"#FF0000",
-				speed:{x:0,y:1},
-				score:1,
+				speed:{x:0,y:3},
+				score:3,
 				shotPattern:[ShotPatterns[0]],
 			},
 			middle:{
@@ -42,7 +42,7 @@ class GameMainClass{
 				size:50,
 				color:"#FF0000",
 				speed:{x:0,y:1},
-				score:2,
+				score:3,
 				shotPattern:[ShotPatterns[1]],
 			},
 			wave:{
