@@ -9,7 +9,6 @@ export const ShotPatterns =[
             let lifeTime = -1
             let v = Utility.sbulletCalc(player.pos,enemy.pos)
             let speed={x:v.x*5,y:v.y*5}
-            console.log(speed);
             enemy.newEnemyBullet(pos,color,size,lifeTime,speed)
         }
     },

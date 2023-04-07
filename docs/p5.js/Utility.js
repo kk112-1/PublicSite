@@ -5,7 +5,6 @@ export class Utility{
         posd.y = pos1.y - pos2.y
         let posdSum = abs(posd.x) + abs(posd.y)
         let posdRate = {x:posd.x/posdSum,y:posd.y/posdSum}
-        console.log("d:"+posdRate.x+":"+posdRate.y);
         return posdRate
     }
 }
