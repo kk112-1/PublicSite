@@ -407,7 +407,7 @@ window.preload = () => {
 	gmc.bgms.bgm2 = loadSound("./sounds/bgm_title.mp3")
 	gmc.bgms.bgm2.setVolume(0.5)
 	gmc.bgms.game_over = loadSound("./sounds/bgm_game_over.mp3")
-	gmc.bgms.game_over.setVolume(0.5)
+	gmc.bgms.game_over.setVolume(0.3)
 }
 
 // p5.jsのセットアップ
@@ -515,3 +515,5 @@ class HtmlController{
 		this.scoreElement.value = gmc.gameStatus.score
 	}
 }
+
+window.HtmlController = HtmlController
