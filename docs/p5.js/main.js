@@ -101,7 +101,7 @@ class GameMainClass{
 		}
 		// メニューやタイトル画面等の処理
 		this.menuCount = 0
-		this.gameStartFlag = false
+		this.gameStartFlag = 0
 		this.gameStartFlagTime = 0
 		// ショットの間隔
 		this.pastShot = 0
@@ -260,7 +260,13 @@ class GameMainClass{
 
 		if(this.gameStartFlag){
 			if(this.menuCount - this.gameStartFlagTime > 180){
-				this.gameStartFlag = false
+				this.gameStartFlag = 0
+				this.menuCount = 0;
+				this.gameStatus.mode = "play"
+				this.bgms.bgm.loop()
+			}else　if(this.gameStartFlag == 3){
+				// タイトルスキップフラグ
+				this.sounds.game_start.stop()
 				this.menuCount = 0;
 				this.gameStatus.mode = "play"
 				this.bgms.bgm.loop()
@@ -281,11 +287,19 @@ class GameMainClass{
 			// }
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.SPACE))>0){
 				if(!this.gameStartFlag){
-					this.gameStartFlag = true
+					this.gameStartFlag = 1
 					this.gameStartFlagTime = this.menuCount
 					this.sounds.game_start.play()
+				}else{
+					// タイトルスキップ
+					if(this.gameStartFlag == 2 ){
+						this.gameStartFlag = 3
+					}
 				}
 			}
+		}
+		if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.SPACE))==0 && this.gameStartFlag == 1){
+			this.gameStartFlag = 2
 		}
 	}
 }
