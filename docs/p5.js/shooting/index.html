@@ -5,16 +5,17 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/molleindustria/p5.play/lib/p5.play.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 	<script type="module" src="./main.js"></script>
+	<script type="text/babel" src="./UI.js"></script>
 </head>
 <body>
 	<p>音量注意！！！</p>
 	<div style="float:left">
 		<div id="GameCanvas" style="float:left"></div>
-		<div style="float:right">
-			<div><label for="score">スコア</label><input type="text" name="score" id="score" value="0" disabled></div>
-			<div><label for="autoshot">オートショット</label><input type="checkbox" name="autoshot" id="autoshot" onchange="HtmlController.controllerChange(this)"></div>
-		</div>
+		<div style="float:right" id="UIRoot"></div>
 	</div>
 	<div style="clear:left">
 		<p>WASDで自機の操作</p>

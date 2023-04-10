@@ -2,6 +2,24 @@ import { MovePatterns } from "./MovePatterns.js"
 import { ShotPatterns } from "./ShotPatterns.js"
 import { Utility } from "./Utility.js"
 var context
+class Asset{
+	constructor(){
+		this.bgms = {
+			bgm:null,
+			bgm2:null,
+			game_over:null
+		}
+		this.sounds = {
+			shot:null,
+			damage:null,
+			destroy:null,
+			pdestroy:null,
+			game_start:null
+		}
+	}
+}
+let asset = new Asset()
+
 class GameMainClass{
 	static canvas = {x:500,y:500}
 	constructor(){
@@ -86,19 +104,6 @@ class GameMainClass{
 		this.enemys = []
 		this.enemy_bullets = []
 
-		this.bgms = {
-			bgm:null,
-			bgm2:null,
-			game_over:null
-		}
-		
-		this.sounds = {
-			shot:null,
-			damage:null,
-			destroy:null,
-			pdestroy:null,
-			game_start:null
-		}
 		// メニューやタイトル画面等の処理
 		this.menuCount = 0
 		this.gameStartFlag = 0
@@ -177,11 +182,11 @@ class GameMainClass{
 					if(0 > dist(this.enemys[l].pos.x,this.enemys[l].pos.y,this.player.shotPos[i].x,this.player.shotPos[i].y) - (this.enemys[l].size/2) - (this.player.shotPos[i].size)/2){
 						// HIT時
 						if(this.enemys[l].damage()){
-							this.sounds.destroy.play()
+							asset.sounds.destroy.play()
 							HtmlController.addscore(this.enemys[l].score)
 							this.enemys.splice(l,1)
 						}else{
-							this.sounds.damage.play()
+							asset.sounds.damage.play()
 						}
 						this.player.shotPos.splice(i,1)
 						break
@@ -241,7 +246,7 @@ class GameMainClass{
 	}
 
 	shot(){
-		this.sounds.shot.play()
+		asset.sounds.shot.play()
 		this.pastShot = 10
 		this.player.shotPos.push({x:this.player.pos.x,y:this.player.pos.y,vx:0,vy:10,size:10,color:"#FF0000"})
 	}
@@ -257,19 +262,15 @@ class GameMainClass{
 			fill("#333333")
 			text("Space to Start...",20+2,GameMainClass.canvas.y/2+2)
 		}
-
 		if(this.gameStartFlag){
-			if(this.menuCount - this.gameStartFlagTime > 180){
+			//this.gameStartFlag = 3 はスキップ
+			if(this.menuCount - this.gameStartFlagTime > 180 || this.gameStartFlag == 3){
 				this.gameStartFlag = 0
+				asset.sounds.game_start.stop()
 				this.menuCount = 0;
 				this.gameStatus.mode = "play"
-				this.bgms.bgm.loop()
-			}else　if(this.gameStartFlag == 3){
-				// タイトルスキップフラグ
-				this.sounds.game_start.stop()
-				this.menuCount = 0;
-				this.gameStatus.mode = "play"
-				this.bgms.bgm.loop()
+				asset.bgms.bgm.loop()
+				HtmlController.gameInitialize()
 			}
 		}
 		this.menuCount++
@@ -289,7 +290,7 @@ class GameMainClass{
 				if(!this.gameStartFlag){
 					this.gameStartFlag = 1
 					this.gameStartFlagTime = this.menuCount
-					this.sounds.game_start.play()
+					asset.sounds.game_start.play()
 				}else{
 					// タイトルスキップ
 					if(this.gameStartFlag == 2 ){
@@ -302,6 +303,7 @@ class GameMainClass{
 			this.gameStartFlag = 2
 		}
 	}
+
 }
 let gmc = new GameMainClass()
 
@@ -343,12 +345,6 @@ class Enemy{
 			// 敵描画(HitCircle)
 			circle(this.pos.x,this.pos.y,this.size)
 			if(0 > dist(this.pos.x,this.pos.y,gmc.player.pos.x,gmc.player.pos.y) - (this.size/2)){
-				gmc.sounds.pdestroy.play()
-				gmc.bgms.bgm.stop()
-				gmc.bgms.game_over.loop()
-				// ゲームオーバー処理
-				alert(`GAME OVER
-${gmc.gameStatus.score}点でした。`)
 				gmc.gameStatus.mode = "game_over"
 			}
 		}else{
@@ -392,12 +388,6 @@ class EnemyBullet{
 			// 弾描画(HitCircle)
 			circle(this.pos.x,this.pos.y,this.size)
 			if(0 > dist(this.pos.x,this.pos.y,gmc.player.pos.x,gmc.player.pos.y) - (this.size/2)){
-				gmc.sounds.pdestroy.play()
-				gmc.bgms.bgm.stop()
-				gmc.bgms.game_over.loop()
-				// ゲームオーバー処理
-				alert(`GAME OVER
-${gmc.gameStatus.score}点でした。`)
 				gmc.gameStatus.mode = "game_over"
 			}
 		}else{
@@ -411,17 +401,17 @@ ${gmc.gameStatus.score}点でした。`)
 // // p5.jsの準備処理
 window.preload = () => {
 	context = new AudioContext()
-	gmc.sounds.shot = loadSound("./sounds/shot.mp3")
-	gmc.sounds.damage = loadSound("./sounds/damage.mp3")
-	gmc.sounds.destroy = loadSound("./sounds/destroy.mp3")
-	gmc.sounds.pdestroy = loadSound("./sounds/pdestroy.mp3")
-	gmc.sounds.game_start = loadSound("./sounds/game_start.mp3")
-	gmc.bgms.bgm = loadSound("./sounds/bgm.mp3")
-	gmc.bgms.bgm.setVolume(0.5)
-	gmc.bgms.bgm2 = loadSound("./sounds/bgm_title.mp3")
-	gmc.bgms.bgm2.setVolume(0.5)
-	gmc.bgms.game_over = loadSound("./sounds/bgm_game_over.mp3")
-	gmc.bgms.game_over.setVolume(0.3)
+	asset.sounds.shot = loadSound("./sounds/shot.mp3")
+	asset.sounds.damage = loadSound("./sounds/damage.mp3")
+	asset.sounds.destroy = loadSound("./sounds/destroy.mp3")
+	asset.sounds.pdestroy = loadSound("./sounds/pdestroy.mp3")
+	asset.sounds.game_start = loadSound("./sounds/game_start.mp3")
+	asset.bgms.bgm = loadSound("./sounds/bgm.mp3")
+	asset.bgms.bgm.setVolume(0.5)
+	asset.bgms.bgm2 = loadSound("./sounds/bgm_title.mp3")
+	asset.bgms.bgm2.setVolume(0.5)
+	asset.bgms.game_over = loadSound("./sounds/bgm_game_over.mp3")
+	asset.bgms.game_over.setVolume(0.3)
 }
 
 // p5.jsのセットアップ
@@ -431,7 +421,7 @@ window.setup = () => {
 	canvasElement.parent(canvasParentElement);
 	background('#ffffff')
 	frameRate(60)
-	HtmlController.scoreElement = document.getElementById("score")
+	HtmlController.initialize()
 }
 
 // p5.jsのメインループ
@@ -444,6 +434,15 @@ window.draw = () => {
 			gmc.mainloop()
 			break
 		case "game_over":
+			asset.sounds.pdestroy.play()
+			asset.bgms.bgm.stop()
+			asset.bgms.game_over.loop()
+			// ゲームオーバー処理
+			alert(`GAME OVER${gmc.gameStatus.score}点でした。`)
+			asset.bgms.game_over.stop()
+			KeySystem.bit = 0
+			gmc = new GameMainClass()
+			gmc.gameStatus.mode = "title"
 			break
 	}	
 }
@@ -463,6 +462,7 @@ class KeySystem{
 window.keyPressed = () =>  {
 	KeySystem.bit |= (1<<keyCode)
 	//print("KeyCode:"+ keyCode + "BIT:" + KeySystem.bit)
+	//UIControlInterface.powerChange(3)
 }
 
 // p5.jsのキー開放
@@ -515,11 +515,16 @@ class SUtility{
 class HtmlController{
 	// htmlのコントローラーと連携用
 	static controllerChange(event){
-		switch(event.id){
+		switch(event.target.id){
 			case "autoshot":
-				gmc.options.autoshot = event.checked
+				if(event.target.dataset.checked=="false"){
+					event.target.dataset.checked="true"
+					gmc.options.autoshot = true
+				}else{
+					event.target.dataset.checked="false"
+					gmc.options.autoshot = false
+				}
 		}
-
 	}
 
 	// スコア更新処理
@@ -527,6 +532,19 @@ class HtmlController{
 	static addscore(point){
 		gmc.gameStatus.score += point
 		this.scoreElement.value = gmc.gameStatus.score
+	}
+
+	static initialize(){
+		this.scoreElement = document.getElementById("score")
+	}
+	
+	static gameInitialize(){
+		if(document.getElementById("autoshot").dataset.checked=="true"){
+			gmc.options.autoshot = true
+		}else{
+			gmc.options.autoshot = false
+		}
+		this.scoreElement.value = 0
 	}
 }
 
