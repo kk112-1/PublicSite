@@ -2,12 +2,29 @@
 <html>
   <head>
     <title>スプレッドシートDB化</title>
+    <style>
+      .frame{
+        position:relative;
+        width: 100%;
+        height:0px;
+        padding-top: 75%;
+      }
+      .inframe{
+        position:absolute;
+        width: 100%;
+        height:100%;
+        top:0;
+        left:0;
+      }
+    </style>
   </head>
   <body>
     <form target="main" method="GET" onsubmit="history.pushState('','スプレッドシートDB化','http://127.0.0.1:3000/docs/GAS/DB/index.html?f='+document.getElementById('f').value)" action="https://script.google.com/macros/s/AKfycbzNZGwpQqBFPdt1m_HNjCA-z4YQkOU7rOLhqwweKg78MJaW7908Q2GZI8ijCyYMw8k5/exec/find">
         <input type="text" id="f" name="f">
     </form>
-    <iframe frameBorder="0" id="main" name="main" src=""></iframe>
+    <div class="frame">
+      <iframe class="inframe" frameBorder="0" id="main" name="main" src=""></iframe>
+    </div>
     <script>
       let search = (new URL(window.location.href)).search
       if(search == ""){
@@ -15,7 +32,8 @@
       }else{
         search = "/find/html"+ search
       }
-      document.getElementById('main').src = 'https://script.google.com/macros/s/AKfycbyNsiKmtfDBcOBseSnJKcVcnPziQclcbVKcQ7d1LpSvuYRSnv_CRqqOjiE0wYcdJ4Sa/exec'+ search;
+      let iframe = document.getElementById('main');
+      iframe.src = 'https://script.google.com/macros/s/AKfycbw4wzdNbdq7aBiJvzXS22TYrppzUHQ17zEs-B_A2YC12aVtX-_mjmt_9044jI5hm9VE/exec'+ search;
     </script>
   </body>
 </html>
