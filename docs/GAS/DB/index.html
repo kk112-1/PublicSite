@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>スプレッドシートDB化</title>
+  </head>
+  <body>
+    <form target="main" method="GET" onsubmit="history.pushState('','スプレッドシートDB化','http://127.0.0.1:3000/docs/GAS/DB/index.html?f='+document.getElementById('f').value)" action="https://script.google.com/macros/s/AKfycbzNZGwpQqBFPdt1m_HNjCA-z4YQkOU7rOLhqwweKg78MJaW7908Q2GZI8ijCyYMw8k5/exec/find">
+        <input type="text" id="f" name="f">
+    </form>
+    <iframe frameBorder="0" id="main" name="main" src=""></iframe>
+    <script>
+      let search = (new URL(window.location.href)).search
+      if(search == ""){
+        search = "/all/html"
+      }else{
+        search = "/find/html"+ search
+      }
+      document.getElementById('main').src = 'https://script.google.com/macros/s/AKfycbyNsiKmtfDBcOBseSnJKcVcnPziQclcbVKcQ7d1LpSvuYRSnv_CRqqOjiE0wYcdJ4Sa/exec'+ search;
+    </script>
+  </body>
+</html>
