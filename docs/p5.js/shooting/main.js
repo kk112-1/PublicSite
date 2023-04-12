@@ -135,7 +135,6 @@ class GameMainClass{
 		triangle(-25+this.player.pos.x, 25+this.player.pos.y, 0+this.player.pos.x, -25+this.player.pos.y, 25+this.player.pos.x,25+this.player.pos.y)
 		fill('#00FFFF')
 		circle(this.player.pos.x,this.player.pos.y,10)
-		print(this.player.pos.x,this.player.pos.y)
 		// 敵出現処理spawn_rate
 		if(this.enemys.length < this.stageStatus.enemy_max){
 			if(random(1,100) < this.stageStatus.spawn_rate){
@@ -529,7 +528,6 @@ class HtmlController{
 				}
 				break
 			case "speedChange":
-				print(event.target.value)
 				gmc.player.speed = parseInt(event.target.value)
 				break
 		}
@@ -547,13 +545,13 @@ class HtmlController{
 	}
 	
 	static gameInitialize(){
-		UIControlInterface.powerChange(2)
+		//UIControlInterface.powerChange(2)
 		if(document.getElementById("autoshot").dataset.checked=="true"){
 			gmc.options.autoshot = true
 		}else{
 			gmc.options.autoshot = false
 		}
-		gmc.player.speed = document.getElementById("speedChange") ? parseInt(document.getElementById("speedChange").value) : 0
+		gmc.player.speed = document.getElementById("speedChange") ? parseInt(document.getElementById("speedChange").value) : 5
 		this.scoreElement.value = 0
 	}
 }
