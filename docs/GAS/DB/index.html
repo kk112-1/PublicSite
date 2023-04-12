@@ -19,7 +19,7 @@
     </style>
   </head>
   <body>
-    <form target="main" method="GET" onsubmit="history.pushState('','スプレッドシートDB化','http://127.0.0.1:3000/docs/GAS/DB/index.html?f='+document.getElementById('f').value)" action="https://script.google.com/macros/s/AKfycbzNZGwpQqBFPdt1m_HNjCA-z4YQkOU7rOLhqwweKg78MJaW7908Q2GZI8ijCyYMw8k5/exec/find">
+    <form method="GET" onsubmit="enter()" >
         <input type="text" id="f" name="f">
     </form>
     <div class="frame">
@@ -27,13 +27,16 @@
     </div>
     <script>
       let search = (new URL(window.location.href)).search
-      if(search == ""){
-        search = "/all/html"
-      }else{
+      console.log(search.split("=")[1])
+      if(search != "" && search.split("=")[1] != ""){
         search = "/find/html"+ search
+      }else{
+        search = "/all/html"
       }
       let iframe = document.getElementById('main');
       iframe.src = 'https://script.google.com/macros/s/AKfycbw4wzdNbdq7aBiJvzXS22TYrppzUHQ17zEs-B_A2YC12aVtX-_mjmt_9044jI5hm9VE/exec'+ search;
+      let input = document.getElementById('f');
+      input.value = search.split("=")[1]?decodeURI(search.split("=")[1]):""
     </script>
   </body>
 </html>

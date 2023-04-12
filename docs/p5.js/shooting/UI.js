@@ -30,8 +30,7 @@ const PowerUp = (props) => {
         </div>
         ),(
         <div id="power-1">
-            <div><label htmlFor="level">パワーレベル1</label><input type="text" name="level" id="level" disabled /></div>
-            <div><input type="button" name="levelup" value="レベルアップ" onClick={HtmlController.controllerChange} /><label htmlFor="level">コスト</label><input type="text" name="levelcost" id="levelcost" disabled /></div>
+            <div><label htmlFor="speedChange">スピード</label><input type="range" name="speedChange" id="speedChange" min="0" max="10" step="1" defaultValue="5"  onChange={HtmlController.controllerChange} /></div>
         </div>
         ),(
         <div id="power-2">

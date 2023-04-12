@@ -135,7 +135,7 @@ class GameMainClass{
 		triangle(-25+this.player.pos.x, 25+this.player.pos.y, 0+this.player.pos.x, -25+this.player.pos.y, 25+this.player.pos.x,25+this.player.pos.y)
 		fill('#00FFFF')
 		circle(this.player.pos.x,this.player.pos.y,10)
-
+		print(this.player.pos.x,this.player.pos.y)
 		// 敵出現処理spawn_rate
 		if(this.enemys.length < this.stageStatus.enemy_max){
 			if(random(1,100) < this.stageStatus.spawn_rate){
@@ -212,23 +212,27 @@ class GameMainClass{
 	control(){
 		if (keyIsPressed) {
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.w))>0 || (KeySystem.bit&(1<<KeySystem.KEY_CODES.up))>0){
-				if(this.player.pos.y > 0 ){
-					this.player.pos.y -= this.player.speed
+				this.player.pos.y -= this.player.speed
+				if(this.player.pos.y < 0 ){
+					this.player.pos.y = 0
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.s))>0 || (KeySystem.bit&(1<<KeySystem.KEY_CODES.down))>0){
-				if(this.player.pos.y < GameMainClass.canvas.y){
-					this.player.pos.y += this.player.speed
+				this.player.pos.y += this.player.speed
+				if(this.player.pos.y > GameMainClass.canvas.y){
+					this.player.pos.y = GameMainClass.canvas.y
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.a))>0 || (KeySystem.bit&(1<<KeySystem.KEY_CODES.left))>0){
-				if(this.player.pos.x > 0){
-					this.player.pos.x -= this.player.speed
+				this.player.pos.x -= this.player.speed
+				if(this.player.pos.x < 0){
+					this.player.pos.x = 0
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.d))>0 || (KeySystem.bit&(1<<KeySystem.KEY_CODES.right))>0){
-				if(this.player.pos.x < GameMainClass.canvas.x){
-					this.player.pos.x += this.player.speed
+				this.player.pos.x += this.player.speed
+				if(this.player.pos.x > GameMainClass.canvas.x){
+					this.player.pos.x = GameMainClass.canvas.x
 				}
 			}
 			if ((KeySystem.bit&(1<<KeySystem.KEY_CODES.SPACE))>0){
@@ -462,7 +466,6 @@ class KeySystem{
 window.keyPressed = () =>  {
 	KeySystem.bit |= (1<<keyCode)
 	//print("KeyCode:"+ keyCode + "BIT:" + KeySystem.bit)
-	//UIControlInterface.powerChange(3)
 }
 
 // p5.jsのキー開放
@@ -524,6 +527,11 @@ class HtmlController{
 					event.target.dataset.checked="false"
 					gmc.options.autoshot = false
 				}
+				break
+			case "speedChange":
+				print(event.target.value)
+				gmc.player.speed = parseInt(event.target.value)
+				break
 		}
 	}
 
@@ -539,11 +547,13 @@ class HtmlController{
 	}
 	
 	static gameInitialize(){
+		UIControlInterface.powerChange(2)
 		if(document.getElementById("autoshot").dataset.checked=="true"){
 			gmc.options.autoshot = true
 		}else{
 			gmc.options.autoshot = false
 		}
+		gmc.player.speed = document.getElementById("speedChange") ? parseInt(document.getElementById("speedChange").value) : 0
 		this.scoreElement.value = 0
 	}
 }
