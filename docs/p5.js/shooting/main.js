@@ -51,7 +51,7 @@ class GameMainClass{
 				size:25,
 				color:"#FF0000",
 				speed:{x:0,y:3},
-				score:3,
+				score:10,
 				shotPattern:[ShotPatterns[0]],
 			},
 			middle:{
@@ -60,7 +60,7 @@ class GameMainClass{
 				size:50,
 				color:"#FF0000",
 				speed:{x:0,y:1},
-				score:3,
+				score:20,
 				shotPattern:[ShotPatterns[1]],
 			},
 			wave:{
@@ -69,7 +69,7 @@ class GameMainClass{
 				size:15,
 				color:"#FF0000",
 				speed:{x:0,y:1},
-				score:1,
+				score:3,
 				movePattern:MovePatterns[0],
 			},
 			wave2:{
@@ -78,7 +78,7 @@ class GameMainClass{
 				size:15,
 				color:"#FF0000",
 				speed:{x:0,y:1},
-				score:1,
+				score:3,
 				movePattern:MovePatterns[1],
 			}
 		}
@@ -98,7 +98,8 @@ class GameMainClass{
 		this.player = {
 			pos:{x:250,y:400},
 			speed:5,
-			shotPos:[]
+			shotPos:[],
+			pastShot:10
 		}
 		
 		this.enemys = []
@@ -130,6 +131,8 @@ class GameMainClass{
 		this.stageStatus.enemy_speed = 1// this.stageStatus.progress / this.options.enemy_speed_amprate + this.options.enemy_speed_start
 		this.stageStatus.spawn_rate = this.stageStatus.progress / this.options.spawn_rate_amprate + this.options.spawn_rate_start
 		
+
+
 		// 自機処理
 		fill('#0000FF')
 		triangle(-25+this.player.pos.x, 25+this.player.pos.y, 0+this.player.pos.x, -25+this.player.pos.y, 25+this.player.pos.x,25+this.player.pos.y)
@@ -250,6 +253,7 @@ class GameMainClass{
 
 	shot(){
 		asset.sounds.shot.play()
+		// 発射遅延時間設定
 		this.pastShot = 10
 		this.player.shotPos.push({x:this.player.pos.x,y:this.player.pos.y,vx:0,vy:10,size:10,color:"#FF0000"})
 	}
@@ -425,6 +429,7 @@ window.setup = () => {
 	background('#ffffff')
 	frameRate(60)
 	HtmlController.initialize()
+	UIControlInterface.Status.power.set(7)
 }
 
 // p5.jsのメインループ
@@ -446,6 +451,8 @@ window.draw = () => {
 			KeySystem.bit = 0
 			gmc = new GameMainClass()
 			gmc.gameStatus.mode = "title"
+			HtmlController.scoreElement.value = 0
+			UIControlInterface.Status.power.set(0)
 			break
 	}	
 }
@@ -471,6 +478,7 @@ window.keyPressed = () =>  {
 window.keyReleased = () => {
 	KeySystem.bit &= ~(1<<keyCode)
 }
+
 class SUtility{
 	static drawGrid(color="#000000",mode="stage") {
 		switch (mode) {
@@ -527,6 +535,19 @@ class HtmlController{
 					gmc.options.autoshot = false
 				}
 				break
+			// メニュー開放処理
+			case "ImplementSpeedMenue":
+				if(gmc.gameStatus.score >= 100){
+					UIControlInterface.powerChange(1)
+					gmc.gameStatus.score -= 100
+				}
+				break
+			case "ImplementPowerMenue":
+				if(gmc.gameStatus.score >= 100){
+					UIControlInterface.powerChange(2)
+					gmc.gameStatus.score -= 100
+				}
+				break
 			case "speedChange":
 				gmc.player.speed = parseInt(event.target.value)
 				break
@@ -538,6 +559,10 @@ class HtmlController{
 	static addscore(point){
 		gmc.gameStatus.score += point
 		this.scoreElement.value = gmc.gameStatus.score
+		// スコア達成で開放
+		if(gmc.gameStatus.score >= 100){
+			UIControlInterface.powerChange(0)
+		}
 	}
 
 	static initialize(){
@@ -545,14 +570,12 @@ class HtmlController{
 	}
 	
 	static gameInitialize(){
-		//UIControlInterface.powerChange(2)
 		if(document.getElementById("autoshot").dataset.checked=="true"){
 			gmc.options.autoshot = true
 		}else{
 			gmc.options.autoshot = false
 		}
 		gmc.player.speed = document.getElementById("speedChange") ? parseInt(document.getElementById("speedChange").value) : 5
-		this.scoreElement.value = 0
 	}
 }
 
