@@ -429,7 +429,7 @@ window.setup = () => {
 	background('#ffffff')
 	frameRate(60)
 	HtmlController.initialize()
-	UIControlInterface.Status.power.set(7)
+//	UIControlInterface.Status.power.set(7)
 }
 
 // p5.jsのメインループ
