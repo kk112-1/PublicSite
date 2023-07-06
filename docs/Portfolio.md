@@ -6,3 +6,5 @@
   - Next.jsを使った作品
 - [PUSH-NUMBERS](http://eva44snz.html.xdomain.jp/push-numbers/index.html)
   - Javascriptでゲーム
+- [Javascriptシューティング](https://codepen.io/qbaodzkk-the-builder/pen/qBJQbYV)
+  - Javascriptでゲーム
