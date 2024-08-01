@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マインクラフト建築イベント申し込みフォーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0 40px;
+            padding: 0;
+        }
+/*         
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        } */
+
+        #formtitle{
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .formbody{
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        h1:after {
+            content: '';
+            display: block;
+            width: 100%;
+            margin: 0;
+            height: 5px;
+            background-color: #8d06dc;
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        textarea {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px 40px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+    <div id="formtitle">
+
+        <!-- formのタイトル部部 -->
+        <h1>マインクラフト建築<br>
+            イベント申し込みフォーム
+        </h1>    
+        
+        
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScpq22e0G3wm3HyD8Fxe0IQ1T9sy_rbAHRmEylK5golFQnKmA/formResponse" method="post" target="hidden_iframe" onsubmit="submitted=true;">
+            
+            <!-- 概要などの説明 -->
+            <p>
+                クリエイトモードでの街づくりイベントです。<br>
+                最初の簡単なオリエンテーション(操作説明含む)のあと
+                参加者一人一人に建築エリアをお配りし、
+                制限時間内で思いつくままに好きな家を建てていただきます。
+                (イベントスタッフによるサポートもあります。)
+                家が建て終わりましたら、どんな家になったのかお互いの家を
+                発表する時間もございます。<br>
+                お時間のご都合がよろしければ、ぜひご参加いただければと思います。
+                定員に限りはございますが、ご参加いただける場合、お友達等も
+                お誘いいただくことも可能です。
+            </p>
+           
+            <p>
+                <strong>
+                【主催】
+                </strong>
+                木内
+            </p>
+
+            <p>
+                <strong>
+                【開催場所】
+                </strong>
+                HITスクール本町校（5号館教室）<br>
+            </p>
+
+            <p>
+                <strong>
+                    ※本イベントは、Minecraft 公式イベントではありません。
+                </strong>
+            </p>
+        </div>
+<!--以下質問内容 -->
+
+<div class="formbody">
+
+    <!-- 参加者 -->
+    <label for="participant">参加者</label>
+    <input type="text" name="entry.1562236486"><br>
+    <br>
+
+    <label for="participant_kana">参加者（ふりがな）</label>
+    <input type="text" name="entry.128768566" value=""><br>
+    <br>
+
+    <!-- 学年 -->
+    <label for="grade">学年</label>
+    <input type="text" name="entry.1170289154" value=""><br>
+    <br>
+    <!-- 保護者 -->
+    <label for="guardian">保護者</label>
+    <input type="text" name="entry.1943271928" value=""><br>
+    <br>
+
+    <label for="guardian_kana">保護者（ふりがな）</label>
+    <input type="text" name="entry.1565460772" value=""><br>
+    <br>
+    
+    <!-- 電話番号 -->
+    <label for="phone">電話番号</label>
+    <input type="text" name="entry.587168715" value=""><br>
+    <br>
+    
+    <!-- Eメール -->
+    <label for="email">Eメール</label>
+    <input type="text" name="entry.1312784890" value=""><br>
+    <br>
+    
+    <!-- 希望参加時間 -->
+    <label for="session">希望参加時間</label>
+    <div class="radio-group">
+
+        <label><input type="radio" name="entry.644129336" value="">[第一部]10:00～12:00</label>
+        <label><input type="radio" name="entry.74394189" value="">[第二部]14:30～16:30</label>
+        
+    </div>
+    <br>
+
+    <!-- マイクラ経験 -->
+    <label for="experience">マインクラフト経験</label>
+    <div class="radio-group">
+        <label><input type="radio" name="entry.74394189" value="">マインクラフトを知らない</label>
+        <label><input type="radio" name="entry.74394189" value="">マインクラフトを知っているがやったことが無い</label>
+        <label><input type="radio" name="entry.74394189" value="">マインクラフトをプレイしたことがある（PC）</label>
+        <label><input type="radio" name="entry.74394189" value="">マインクラフトをプレイしたことがある（PC以外）</label>
+    </div>
+    <br>
+
+    <!-- 備考欄 -->
+    <label for="remarks">備考欄（事前におっしゃっておきたいことがある方はご記入ください）</label>
+    <textarea name="entry.371895643" rows="3" cols="50"></textarea>
+    <br>
+    
+    <!-- 送信ボタン -->
+    <input type="submit" value="申し込み">
+</div>
+</form>
+<!-- ↑ここまでがform内部 -->
+</div>
+
+<!-- 送信完了画面を読み込むスクリプト -->
+<script>
+    let submitted = false;
+    
+    const page_transition = function () {
+        if(submitted){
+            window.location = './thanks.html';
+        }
+    }
+</script>
+<iframe name="hidden_iframe" style="display:none;" onload="page_transition()"></iframe>
+
+</body>
+</html>

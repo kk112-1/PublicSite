@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0 40px;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        } 
+        
+        button[type="button"] {
+            width: 80%;
+            margin-top: 20px;
+            padding: 10px 40px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        img{
+            margin: 50px;
+            width: 80%;
+            height: 80%;
+        }
+
+        </style>
+
+     <script>
+       function closeWindow() {
+        window.open('', '_self', ''); // For some browsers
+        window.close(); // Close the window
+    }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        
+        <h1>申し込み完了</h1>
+        
+        <p>申し込みありがとうございます。<br>
+            有り難うございます。
+        </p>
+
+        <button type="button" class="close-button" onclick="closeWindow()">閉じる</button>
+        
+        <!-- <img src="../img/micra_end_img.jpg"> -->
+        <img src="../img/micra_end_img2.jpg">
+    
+    </div>
+</body>
+</html>
