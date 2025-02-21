@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to Markdown Converter</title>
+</head>
+<body>
+    <h1>CSV to Markdown Converter</h1>
+    <p>J-Mottoの勤務表CSVをMarkdown形式に変換するツール</p>
+    <input type="file" id="csvFileInput" accept=".csv">
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('csvFileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const text = new TextDecoder('shift_jis').decode(e.target.result);
+                    const lines = text.split('\n');
+                    let markdown = '| 日付 | 曜日 | 始業時刻 | 終業時刻 | 備考 |\n';
+                    markdown += '| ---- | ---- | -------- | -------- | ---- |\n';
+                    for (let i = 1; i < lines.length; i++) {
+                        const cells = lines[i].split(',');
+                        if (cells.length > 1) {
+                            markdown += `| ${cells[0]} | ${cells[1]} | ${cells[2]} | ${cells[9]} | ${cells[14]} |\n`;
+                        }
+                    }
+                    document.getElementById('output').textContent = markdown;
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+    </script>
+</body>
+</html>
