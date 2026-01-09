@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIプログラミング体験会：ヘビゲームを作ろう</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        .pixel-font {
+            font-family: 'DotGothic16', sans-serif;
+        }
+
+        .prompt-card {
+            transition: transform 0.2s;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .copy-success {
+            animation: fadeInOut 2s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .prompt-container {
+            position: relative;
+        }
+
+        .copy-btn-overlay {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 10;
+        }
+
+        .optional-badge {
+            background-color: #64748b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 border-t-8 border-indigo-600">
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white py-10 px-4 shadow-lg mb-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 pixel-font">🎮 AIプログラミング体験会</h1>
+            <p class="text-indigo-100 text-lg md:text-xl font-bold">最新AIと一緒に、世界に一つだけのゲームを作ろう！</p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 pb-20">
+
+        <!-- Experience Overview -->
+        <section class="bg-white rounded-2xl p-8 shadow-sm mb-12 border border-slate-200">
+            <h2 class="text-2xl font-bold mb-6 text-indigo-700 flex items-center">
+                <span class="mr-3">🚀</span>体験会の内容
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center text-sm">
+                <div class="p-4 bg-indigo-50 rounded-xl">
+                    <div class="text-3xl mb-2">🤖</div>
+                    <div class="font-bold text-indigo-900 mb-1">AIと会話</div>
+                    <p class="text-xs text-slate-600">プロンプトを使ってAIに命令を出します</p>
+                </div>
+                <div class="p-4 bg-emerald-50 rounded-xl">
+                    <div class="text-3xl mb-2">🛠️</div>
+                    <div class="font-bold text-emerald-900 mb-1">ゲーム制作</div>
+                    <p class="text-xs text-slate-600">ヘビゲームをゼロから組み立てます</p>
+                </div>
+                <div class="p-4 bg-amber-50 rounded-xl">
+                    <div class="text-3xl mb-2">📱</div>
+                    <div class="font-bold text-amber-900 mb-1">スマホ対応</div>
+                    <p class="text-xs text-slate-600">最後はスマホで遊べるように改造します</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction & Instructions -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <!-- 成功のコツ -->
+            <section class="bg-white rounded-2xl p-6 shadow-sm border-t-4 border-indigo-400">
+                <h2 class="text-lg font-bold mb-4 flex items-center text-indigo-700">
+                    <span
+                        class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center mr-2 text-sm italic">!</span>
+                    成功のコツ
+                </h2>
+                <ul class="space-y-4 text-sm text-slate-700">
+                    <li class="flex flex-col">
+                        <span class="font-bold flex items-center"><span
+                                class="text-indigo-500 mr-2">✅</span>1つずつ順番に送る</span>
+                        <span class="text-xs text-slate-500 ml-6">【理由】AIが一度に多くの命令を受けると、処理が追いつかずミスをしやすくなるからです。</span>
+                    </li>
+                    <li class="flex flex-col">
+                        <span class="font-bold flex items-center"><span
+                                class="text-indigo-500 mr-2">✅</span>返事が終わるまで待つ</span>
+                        <span class="text-xs text-slate-500 ml-6">【理由】AIがコードを書き終える前に次の操作をすると、プログラムが途中で壊れてしまうからです。</span>
+                    </li>
+                    <li class="flex flex-col">
+                        <span class="font-bold flex items-center"><span
+                                class="text-indigo-500 mr-2">✅</span>「今の直して！」も指示</span>
+                        <span
+                            class="text-xs text-slate-500 ml-6">【理由】AIは完璧ではありません。間違えた時にどう修正させるかが、AIを使いこなす一番のスキルです。</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 操作の手順 -->
+            <section class="bg-white rounded-2xl p-6 shadow-sm border-t-4 border-emerald-400">
+                <h2 class="text-lg font-bold mb-4 flex items-center text-emerald-700">
+                    <span
+                        class="bg-emerald-600 text-white rounded-full w-7 h-7 flex items-center justify-center mr-2 text-sm italic">▶</span>
+                    操作の手順
+                </h2>
+                <ol class="space-y-4 text-sm text-slate-700">
+                    <li class="flex flex-col">
+                        <span class="flex items-start">
+                            <span
+                                class="bg-emerald-100 text-emerald-700 rounded-full w-5 h-5 flex items-center justify-center mr-2 text-xs font-bold mt-0.5">1</span>
+                            プロンプトをAIに送信
+                        </span>
+                        <span class="text-xs text-slate-500 ml-7 italic">AIに「何を作ってほしいか」を伝えます。</span>
+                    </li>
+                    <li class="flex flex-col">
+                        <span class="flex items-start">
+                            <span
+                                class="bg-emerald-100 text-emerald-700 rounded-full w-5 h-5 flex items-center justify-center mr-2 text-xs font-bold mt-0.5">2</span>
+                            終わったら「コードをコピーする」を押す
+                        </span>
+                        <span class="text-xs text-slate-500 ml-7 italic">AIが作った新しい「設計図」をまるごと取得します。</span>
+                    </li>
+                    <li class="flex flex-col">
+                        <span class="flex items-start font-bold text-emerald-800">
+                            <span
+                                class="bg-emerald-600 text-white rounded-full w-5 h-5 flex items-center justify-center mr-2 text-xs mt-0.5 shadow-sm font-bold">3</span>
+                            中身をすべて貼り付ける
+                        </span>
+                        <span
+                            class="text-xs text-slate-500 ml-7 font-normal">【理由】古い内容をすべて消して入れ替えることで、新旧のコードが混ざる不具合を防ぎます。</span>
+                    </li>
+                    <li class="flex flex-col">
+                        <span class="flex items-start">
+                            <span
+                                class="bg-emerald-100 text-emerald-700 rounded-full w-5 h-5 flex items-center justify-center mr-2 text-xs font-bold mt-0.5">4</span>
+                            保存して、動きを確認！
+                        </span>
+                        <span class="text-xs text-slate-500 ml-7 italic">指示がどう形になったか、実際に遊んで確かめます。</span>
+                    </li>
+                </ol>
+            </section>
+        </div>
+
+        <!-- Essential Path -->
+        <div class="mb-10 text-center">
+            <span class="bg-indigo-600 text-white px-6 py-1 rounded-full text-sm font-bold shadow-md">まずはここから（必須）</span>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Step 1 -->
+            <div
+                class="prompt-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-t-4 border-t-indigo-500">
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200">
+                    <span class="font-bold text-indigo-600">Step 1: ゲームの土台を作る</span>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="text-sm text-slate-600 space-y-3">
+                        <p class="font-bold text-slate-800 flex items-center">
+                            <span class="bg-indigo-100 text-indigo-600 rounded px-2 py-0.5 mr-2">🎯 ミッション</span>
+                            まずは基本！ゲームの土台とキャラクターをAIに用意してもらいます。
+                        </p>
+                        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                            <p class="text-xs text-amber-800 font-bold">
+                                ⚠️ <code class="bg-amber-200 px-1 rounded text-red-600 underline">"img/任意のファイル名"</code>
+                                を自分の画像名に変えて送信してください。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="prompt-container">
+                        <button onclick="copyPrompt('prompt1', this)"
+                            class="copy-btn-overlay bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md text-xs font-bold transition">コードをコピーする</button>
+                        <pre id="prompt1"
+                            class="whitespace-pre-wrap text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 pt-10 rounded-lg border border-slate-100 font-mono">HTML, CSS, JavaScriptを1つのファイルにまとめて出力して
+デザインは中学生が好むポップでかっこいい感じにして
+キャラクターの画像URLは、コードの冒頭で const CHAR_IMAGE = "img/任意の画像のファイル名"; という変数で定義して、今後生成するプログラムは日本語で分かりやすいコメントを入れてください。
+以下はアプリ案
+画面内を動くヘビがエサを食べるゲームを作って。エサを食べると体が長くなり、壁や体に当たると終了。</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div
+                class="prompt-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-t-4 border-t-indigo-500">
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200">
+                    <span class="font-bold text-indigo-600">Step 2: スコア機能をつける</span>
+                </div>
+                <div class="p-6 space-y-4">
+                    <p class="text-sm text-slate-800 font-bold flex items-center">
+                        <span class="bg-indigo-100 text-indigo-600 rounded px-2 py-0.5 mr-2">🎯 ミッション</span>
+                        何点取れたか分かるようにします。AIなら複雑な計算も一瞬で組み込めます！
+                    </p>
+                    <div class="prompt-container">
+                        <button onclick="copyPrompt('prompt2', this)"
+                            class="copy-btn-overlay bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md text-xs font-bold transition">コードをコピーする</button>
+                        <pre id="prompt2"
+                            class="whitespace-pre-wrap text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 pt-10 rounded-lg border border-slate-100 font-mono">スコアを作成して表示して下さい。 スコアの計算式は時間(秒)と餌の取った数(100点)で計算してリアルタイムに表示して</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional Path -->
+        <div class="mt-16 mb-10 text-center">
+            <span
+                class="bg-slate-500 text-white px-6 py-1 rounded-full text-sm font-bold shadow-md">もっと改造したい人向け（任意）</span>
+            <p class="text-xs text-slate-500 mt-2">時間に余裕があれば挑戦してみよう！</p>
+        </div>
+
+        <div class="space-y-8 mb-16">
+            <!-- Option 1 (Game Over) -->
+            <div
+                class="prompt-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-t-4 border-t-slate-400">
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200 flex justify-between items-center">
+                    <span class="font-bold text-slate-700">オプション1: ゲームオーバー画面</span>
+                    <span class="optional-badge">任意</span>
+                </div>
+                <div class="p-6 space-y-4">
+                    <p class="text-sm text-slate-800 font-bold flex items-center">
+                        <span class="bg-slate-100 text-slate-600 rounded px-2 py-0.5 mr-2">🎯 ミッション</span>
+                        「負けた！」という悔しさを演出して、リトライ機能をつけます。
+                    </p>
+                    <div class="prompt-container">
+                        <button onclick="copyPrompt('opt1', this)"
+                            class="copy-btn-overlay bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md text-xs font-bold transition">コードをコピーする</button>
+                        <pre id="opt1"
+                            class="whitespace-pre-wrap text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 pt-10 rounded-lg border border-slate-100 font-mono">ゲームオーバーでゲームを停止してスコアを大きく表示して
+再開ボタンも忘れずに</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Option 2 (High Score & Start Button) -->
+            <div
+                class="prompt-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-t-4 border-t-slate-400">
+                <div class="bg-slate-100 px-6 py-3 border-b border-slate-200 flex justify-between items-center">
+                    <span class="font-bold text-slate-700">オプション2: こだわり機能</span>
+                    <span class="optional-badge">任意</span>
+                </div>
+                <div class="p-6 space-y-6">
+                    <div>
+                        <p class="text-sm text-slate-800 font-bold mb-2 flex items-center">
+                            <span class="bg-slate-100 text-slate-600 rounded px-2 py-0.5 mr-2">🎯 ミッション</span>
+                            記録の保存や、スタート画面の追加でゲームの完成度を高めます。
+                        </p>
+                        <div class="prompt-container mb-4">
+                            <button onclick="copyPrompt('opt2a', this)"
+                                class="copy-btn-overlay bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded text-xs transition">コードをコピーする</button>
+                            <pre id="opt2a"
+                                class="whitespace-pre-wrap text-xs text-slate-600 bg-slate-50 p-3 pt-8 rounded border border-slate-100 font-mono">ハイスコアの保存をして！</pre>
+                        </div>
+                        <div class="prompt-container">
+                            <button onclick="copyPrompt('opt2b', this)"
+                                class="copy-btn-overlay bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded text-xs transition">コードをコピーする</button>
+                            <pre id="opt2b"
+                                class="whitespace-pre-wrap text-xs text-slate-600 bg-slate-50 p-3 pt-8 rounded border border-slate-100 font-mono">いきなり始まらないようにスタートボタンを作って</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Tips Section -->
+        <div class="mt-16 bg-indigo-50 rounded-3xl p-8 border-2 border-dashed border-indigo-200 shadow-inner">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-6 flex items-center pixel-font text-center justify-center">
+                💡 AIを使いこなす体験！
+            </h2>
+            <p class="text-center text-slate-600 mb-8 text-sm">
+                AIへの「指示の出し方」で使い勝手が変わることを体験しましょう。
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8 text-sm">
+                <div class="bg-red-50 p-5 rounded-xl border border-red-100">
+                    <h3 class="font-bold text-red-600 mb-2 flex items-center">❌ おしい失敗例</h3>
+                    <div class="prompt-container mb-2">
+                        <button onclick="copyPrompt('fail1', this)"
+                            class="copy-btn-overlay bg-red-600 text-white px-2 py-0.5 rounded text-xs">コードをコピーする</button>
+                        <p id="fail1" class="font-mono bg-white p-2 pt-10 rounded border border-red-100">スマホに対応して</p>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed italic">
+                        【理由】AIは気を利かせて「スワイプ操作」にしてくれますが、自分の指で画面が隠れてしまい、非常に遊びにくくなることがあります。
+                    </p>
+                </div>
+
+                <div class="bg-green-50 p-5 rounded-xl border border-green-100 shadow-sm">
+                    <h3 class="font-bold text-green-600 mb-2 flex items-center">✅ 賢い成功例</h3>
+                    <div class="prompt-container mb-2">
+                        <button onclick="copyPrompt('success1', this)"
+                            class="copy-btn-overlay bg-green-600 text-white px-2 py-0.5 rounded text-xs">コードをコピーする</button>
+                        <p id="success1" class="font-mono bg-white p-2 pt-10 rounded border border-green-100 font-bold">
+                            十字キーボタンを設置してスマホに対応して</p>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-bold">
+                        【理由】具体的に「ボタンを作って」と伝えることで、画面を隠さずに快適に操作できるゲームになります。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Final Goal -->
+            <div class="bg-white rounded-2xl shadow-md border border-indigo-300 p-6 text-center">
+                <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest">Final Step</span>
+                <h3 class="text-xl font-bold text-slate-800 mt-2 mb-4">スマホ版を完成させよう！</h3>
+                <p class="text-sm text-slate-600 mb-6">「成功例」のプロンプトを送って、誰でも遊べる完全版に仕上げましょう。</p>
+            </div>
+        </div>
+
+        <!-- Conclusion Summary -->
+        <section class="mt-16 bg-slate-800 text-white rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 text-center pixel-font">✨ 体験会のまとめ</h2>
+            <div class="space-y-6 text-slate-300">
+                <p class="leading-relaxed text-center md:text-left">
+                    今日の体験会で、あなたは自分のアイデアをAIに伝え、実際の形にするという<span
+                        class="text-indigo-400 font-bold text-lg">「AI時代のプログラミング」</span>を体験しました。
+                </p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-slate-700 p-4 rounded-xl border border-slate-600">
+                        <div class="text-indigo-400 font-bold mb-2">● 学んだこと</div>
+                        <ul class="text-xs space-y-2">
+                            <li>・AIは「具体的」な指示が大好き</li>
+                            <li>・1つずつ指示して動作を確認するのが鉄則</li>
+                            <li>・失敗しても指示の出し方を変えれば解決できる</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-700 p-4 rounded-xl border border-slate-600">
+                        <div class="text-emerald-400 font-bold mb-2">● 次へのステップ</div>
+                        <ul class="text-xs space-y-2">
+                            <li>・色や画像を変えて自分らしくデザイン</li>
+                            <li>・新しいアイテムや敵を追加してみる</li>
+                            <li>・他のゲームのアイデアもAIに相談してみる</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center font-bold text-indigo-300 mt-4 leading-relaxed">
+                    プログラミングは「魔法」ではなく「AIとの楽しい会話」です。<br>
+                    今日の完成したゲームは、後日公開しますので、ぜひ自分のスマホで遊んでみてください！
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-slate-500 text-xs">
+            <p>© 2026 有限会社宇佐システム開発.</p>
+        </footer>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="hidden fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl copy-success z-50">
+        コピー完了！AIに指示を出そう 🐍
+    </div>
+
+    <script>
+        function copyPrompt(elementId, btn) {
+            const text = document.getElementById(elementId).innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+
+            const originalText = btn.innerText;
+            btn.innerText = '成功！';
+            btn.classList.add('bg-green-500');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                btn.innerText = originalText;
+                btn.classList.remove('bg-green-500');
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>
